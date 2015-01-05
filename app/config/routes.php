@@ -45,7 +45,7 @@ $route['login']="usuarios";
 $route['empresa/(:any)']="empresa/view/$1";*/
 $route['guardar_empresa']="empresa/guardarempresa";
 $route['listado_empresas']="empresa/listado_empresas";
-//$route['empresa/addempresa']="empresa/addempresa";
+$route['addempresa']="empresa/addempresa";
 $route['empresa/modificar_empresa']="empresa/modificar_empresa";
 $route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
 
