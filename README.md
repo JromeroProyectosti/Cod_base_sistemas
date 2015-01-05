@@ -1,4 +1,4 @@
-codPTV
+Codigo Base
 ======
 
 ##########################################################
@@ -7,4 +7,4 @@ codPTV
 ###                                                   ####
 ##########################################################
 
-Version en desarrollo
+Codigo base para futuros sistemas web
