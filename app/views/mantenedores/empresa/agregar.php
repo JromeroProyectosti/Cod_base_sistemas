@@ -1,9 +1,9 @@
-<?php echo form_open_multipart('guardar_empresa');?>
-	<p><label class="content">Rut Empresa</label><input type='text' class="box" name='txtRutEmpresa' value='<?=set_value("txtRutEmpresa")?>' />* <div class='error' id='err_rut'><?=form_error('txtRutEmpresa')?></div></p>
-	<p><label class="content">Nombre Empresa</label><input type='text' class="box" name='txtNombreEmpresa' value='<?=set_value("txtNombreEmpresa")?>'/>* <div class='error' id='err_nomb'><?=form_error('txtNombreEmpresa')?></div></p>
-	<p><label class="content">Razon Social</label><input type='text' class="box" name='txtRazonSocial' value='<?=set_value("txtRazonSocial")?>'/>* <div class='error' id='err_razon'><?=form_error('txtRazonSocial')?></div></p>
-	<p><label class="content">Telefono</label><input type='text' class="box" name='txtTelefono' value='<?=set_value("txtTelefono")?>'/> <div class='error' id='err_razon'><?=form_error('txtTelefono')?></div></p>
-	<p><label class="content">Direcci&oacute;n</label><input type='text' class="box" name='txtDireccion' value='<?=set_value("txtDireccion")?>'/><div class='error' id='err_razon'><?=form_error('txtDireccion')?></div></p>
+<?php echo form_open('guardar_empresa',array('class'=>'JNice'));?>
+	<p><label>Rut Empresa</label><input type='text' class="text-long"name='txtRutEmpresa' value='<?=set_value("txtRutEmpresa")?>' />* <div class='error' id='err_rut'><?=form_error('txtRutEmpresa')?></div></p>
+	<p><label>Nombre Empresa</label><input type='text' class="text-long" name='txtNombreEmpresa' value='<?=set_value("txtNombreEmpresa")?>'/>* <div class='error' id='err_nomb'><?=form_error('txtNombreEmpresa')?></div></p>
+	<p><label>Razon Social</label><input type='text' class="text-long" name='txtRazonSocial' value='<?=set_value("txtRazonSocial")?>'/>* <div class='error' id='err_razon'><?=form_error('txtRazonSocial')?></div></p>
+	<p><label class="content">Telefono</label><input type='text' class="text-long" name='txtTelefono' value='<?=set_value("txtTelefono")?>'/> <div class='error' id='err_razon'><?=form_error('txtTelefono')?></div></p>
+	<p><label class="content">Direcci&oacute;n</label><input type='text' cclass="text-long" name='txtDireccion' value='<?=set_value("txtDireccion")?>'/><div class='error' id='err_razon'><?=form_error('txtDireccion')?></div></p>
 	<p><label class="content">Tipo Empresa</label><select name='cboTipoEmpresa' >
 <?php foreach($tipo_empresa as $row):?>
 		<option value='<?=$row['IdTipoempresa']?>'><?=$row['TipoEmpresa']?></option>

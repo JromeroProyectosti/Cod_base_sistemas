@@ -1,5 +1,5 @@
 
-<a href="empresa/addempresa"><img src="<?=base_url()?>icons/bonus/icons-32/plus.png" /></a>
+<a href="addempresa"><img src="<?=base_url()?>icons/bonus/icons-32/plus.png" /></a>
 <table>
 	<tr>
 		<td>Rut Empresa</td>
