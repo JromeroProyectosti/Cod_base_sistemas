@@ -1,3 +1,4 @@
 RewriteEngine on
-RewriteCond $1 !^(index.php|css|js|images|robots.txt)
-RewriteRule ^(.*)$ /codPTV/index.php/$1 [L]
+
+RewriteCond $1 !^(index.php|css|js|img|robots.txt)
+RewriteRule ^(.*)$ /Cod_base_sistemas/index.php/$1 [L]

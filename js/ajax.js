@@ -1,5 +1,5 @@
 <!-- Controles de Comuna Region y Ciudad-->
-var URL_BASE="http://localhost/codPTV/";
+var URL_BASE="http://localhost/Cod_base_sistemas/";
 function buscar_ciudad(id_region){
 	
 	$.ajax({

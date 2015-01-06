@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/codPTV';
+$config['base_url']	= 'http://localhost/Cod_base_sistemas';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'espanol';
 
 /*
 |--------------------------------------------------------------------------

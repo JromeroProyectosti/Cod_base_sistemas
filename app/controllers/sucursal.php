@@ -15,9 +15,10 @@ class Sucursal extends CI_Controller{
 	}
 
 	public function listado_sucursal($rutempresa){
-		echo "paso";
+		
 		$this->data['titulo']="Sucursal - Listado";
 		$detalle['listado']=$this->sucursales_model->listado_sucursal($rutempresa);
+		print_r($detalle);
 		$this->load->view("template/header",$this->data);
 		$this->load->view("mantenedores/sucursal/listado_sucursal",$detalle);
 		$this->load->view("template/footer",$this->data);
