@@ -25,5 +25,21 @@ class Usuarios_model extends CI_Model{
 			return false;
 		}
 	}
+	public function menu($idUsuario){
+	
+		$this->db->select("NombreMenu,RutaMenu");
+		$this->db->from("menu");
+		$this->db->join("submenu","submenu.IdMenu=menu.IdMenu");
+		$this->db->join("usuariosubmenu","usuariosubmenu.IdSubmenu=submenu.IdSubmenu");
+		$this->db->where("usuariosubmenu.IdUsuario",$idUsuario);
+		$result=$this->db->get();
+
+		if($result->num_rows()){
+			return $result->row_array();
+
+		}else{
+			return false;
+		}
+	}
 }
 
