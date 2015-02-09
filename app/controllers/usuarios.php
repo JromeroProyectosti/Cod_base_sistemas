@@ -15,7 +15,6 @@ class Usuarios extends CI_Controller{
 		$this->load->view("template/header",$this->data);
 		$this->load->view("login",$this->data);
 		$this->load->view("template/footer",$this->data);
-
 		$this->session->sess_destroy();
 		//$this->config->set_item("navigation","");
 	}
@@ -24,7 +23,8 @@ class Usuarios extends CI_Controller{
 		$password=$_POST['txtPassword'];
 		$query=$this->usuarios_model->very_user($usuario,$password);
 		if($query){
-			$nombre_completo='';
+			$id_usuario=0;
+                        $nombre_completo='';
 			$nombre_empresa='';
 			$tipo_empresa='';
 			$rol='';
@@ -32,6 +32,7 @@ class Usuarios extends CI_Controller{
 			$logo='';
 			$sucursales='';
 			foreach($query as $row){
+                                $id_usuario=$row['IdUsuario'];
 				$nombre_completo=$row['NombreUsuario']." ".$row['Apellido'];
 				$nombre_empresa=$row['NombreEmpresa'];
 				$tipo_empresa=$row['TipoEmpresa'];
@@ -41,8 +42,8 @@ class Usuarios extends CI_Controller{
 				$sucursales.=$row['NombreSucursal']."<br>";
 
 			}
-
 			$this->session->set_userdata(array(
+                                'id_usuario'=>$id_usuario,
 				'username'=>$usuario,
 				'nombre_completo'=>$nombre_completo,
 				'nombre_empresa'=>$nombre_empresa,
@@ -73,9 +74,7 @@ class Usuarios extends CI_Controller{
 			$this->load->view("template/header",$this->data);
 			$this->load->view("login",$this->data);
 			$this->load->view("template/footer",$this->data);
-
 		$this->session->sess_destroy();
-		}
-
+                }
 	}
 }

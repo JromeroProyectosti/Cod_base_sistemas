@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Empresa extends CI_Controller{
+class Empresa extends MY_Controller{
 	
 	public function __construct(){
 		
-		parent::__construct();
+		parent::__construct(TRUE);
+                
 		if(!$this->session->userdata('username')){
 			redirect(base_url()."login");
 		}
@@ -15,7 +16,7 @@ class Empresa extends CI_Controller{
 	}
 
 	public function view($page='listado'){
-		echo "paso";
+		
 		if ( ! file_exists('app/views/mantenedores/empresa/'.$page.'.php'))
 		{
 			// Oh, oh... no tenemos una pagina para esto!
@@ -111,6 +112,8 @@ class Empresa extends CI_Controller{
 	}
 
 	public function listado_empresas(){
+               
+            
 		$this->data['titulo']="Empresas - Listado";
 		$detalle['listado']=$this->empresas_model->listado_empresas($this->session->userdata('idMaestra'));
 		$this->load->view("template/header",$this->data);
