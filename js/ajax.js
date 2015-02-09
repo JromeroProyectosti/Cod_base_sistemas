@@ -1,4 +1,3 @@
-<!-- Controles de Comuna Region y Ciudad-->
 var URL_BASE="http://localhost/Cod_base_sistemas/";
 function buscar_ciudad(id_region){
 	
@@ -23,7 +22,6 @@ function buscar_comuna(id_ciudad){
 	});
 }
 
-<!-- validacion rut-->
 
 function valida_rut(rut){
 	$.ajax({

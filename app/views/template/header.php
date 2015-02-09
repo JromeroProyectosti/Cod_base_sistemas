@@ -17,7 +17,7 @@
 	
 
 	 <!-- You can name the links with lowercase, they will be transformed to uppercase by CSS, we prefered to name them with uppercase to have the same effect with disabled stylesheet -->
-	<?php echo menu_ul();?>
+	<?php #echo menu_ul();?>
 	 <!-- // #end mainNav -->
 	<div id="containerHolder">
 		<div id="container">

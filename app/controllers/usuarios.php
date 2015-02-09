@@ -17,7 +17,7 @@ class Usuarios extends CI_Controller{
 		$this->load->view("template/footer",$this->data);
 
 		$this->session->sess_destroy();
-		$this->config->set_item("navigation","");
+		//$this->config->set_item("navigation","");
 	}
 	public function ini_session(){
 		$usuario=$_POST['txtUsuario'];
@@ -65,7 +65,7 @@ class Usuarios extends CI_Controller{
 					'title'=>'Usuario',
 					'link'=>'#')
 				);
-			$this->config->item("navigation",$menu);
+			//$this->config->item("navigation",$menu);
 			redirect(base_url()."home");
 		}else{
 			$this->data['titulo']=ucfirst("Login");
