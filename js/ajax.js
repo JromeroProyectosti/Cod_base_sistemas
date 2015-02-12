@@ -1,13 +1,14 @@
 var URL_BASE="http://localhost/Cod_base_sistemas/";
 function buscar_ciudad(id_region){
-	
 	$.ajax({
 		type:"POST",
-		url: URL_BASE+"comun/generaoptionciudad/",
+		url: URL_BASE+"comun/generaoptionciudad",
 		data:'region='+id_region,
 		success: function(resp){
 			
-			$('select#cboCiudad').attr('disabled',false).html(resp);
+                    $('select#cboCiudad').attr('disabled',false).html(resp);
+                    $('select#cboComuna').attr('disabled',true).html(resp);
+             
 		}
 	});
 }
@@ -21,7 +22,6 @@ function buscar_comuna(id_ciudad){
 		}
 	});
 }
-
 
 function valida_rut(rut){
 	$.ajax({

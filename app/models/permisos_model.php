@@ -6,22 +6,22 @@ class Permisos_model extends CI_Model{
     }
     
     public function lista_permisos($id_usuario=0, $constructor=""){
-        $this->db->select("pa.nombre, metodo");
-        $this->db->from("permisos_accion pa");
-        $this->db->join("permisos p", "p.id=pa.IdPermiso");
+        $this->db->select("pa.NombrePermisoaccion, MetodoPermisoaccion");
+        $this->db->from("permisosacciones pa");
+        $this->db->join("permisos p", "p.idPermiso=pa.IdPermiso");
         if($id_usuario>0){
-            $this->db->join("usuario_permiso_accion upa","upa.IdPermisoAccion=pa.id");
+            $this->db->join("usuarios_permisosacciones upa","upa.IdPermisoaccion=pa.IdPermisoaccion");
             $this->db->where("upa.IdUsuario",$id_usuario);
         }
         if($constructor!=""){
-            $this->db->where("p.constructor",$constructor);
+            $this->db->where("p.ConstructorPermiso",$constructor);
         }
         $result=$this->db->get();
         $resultado_permisos=array();
         if($result->num_rows())
         {
             foreach($result->result() as $item){
-                $resultado_permisos[]=$item->metodo;
+                $resultado_permisos[]=$item->MetodoPermisoaccion;
             }
             return $resultado_permisos;
         }else{

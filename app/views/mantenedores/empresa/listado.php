@@ -7,20 +7,28 @@ echo form_open("addempresa",array('class'=>'jNice'));
 <input type="submit" value="Nueva Empresa">
 </fieldset>
 <table>
-	<tr>
+	<tr class="text-medium">
 		<td>Rut Empresa</td>
 		<td>Nombre Empresa</td>
 
 		<td></td>
 	</tr>
-	<?php foreach ($listado as $value): ?>
+	<?php
+            $i=0;
+            foreach ($listado as $value): 
+                $class='';
+                if($i%2){
+                    $class="class='odd'";
+                }
+                $i++;
+            ?>
 	
-	<tr>
-		<td><?=$value['RutEmpresa']?></td>
-		<td><?=$value['NombreEmpresa']?></td>
-		<td class="action"><a href="<?=base_url()?>sucursal/listado_sucursal/<?=$value['RutEmpresa']?>" class="view">detalle</a>
-		<a href="<?=base_url()?>empresa/modificar_empresa/<?=$value['RutEmpresa']?>" class="edit">Modificar</a>
-		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutEmpresa']?>" class="delete">Eliminar</a>
+	<tr <?=$class?>>
+		<td><?=$value['RutProveedor']?></td>
+		<td><?=$value['NombreProveedor']?></td>
+		<td class="action"><a href="<?=base_url()?>detalle_empresa/<?=$value['RutProveedor']?>" class="view">detalle</a>
+		<a href="<?=base_url()?>modificar_empresa/<?=$value['RutProveedor']?>" class="edit">Modificar</a>
+		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" class="delete">Eliminar</a>
 		</td>
 	</tr>
 	<?php endforeach ?>
@@ -34,19 +42,17 @@ echo form_open("addempresa",array('class'=>'jNice'));
 		<td>Razon Social</td>
 		<td>Telefono</td>
 		<td>Direccion</td>
-		<td>TIpo Empresa</td>
 		<td></td>
 	</tr>
 		<tr>
-		<td><?=$value['RutEmpresa']?></td>
-		<td><?=$value['NombreEmpresa']?></td>
+		<td><?=$value['RutProveedor']?></td>
+		<td><?=$value['NombreProveedor']?></td>
 		<td><?=$value['RazonSocial']?></td>
-		<td><?=$value['Telefono']?></td>
-		<td><?=$value['Direccion']?></td>
-		<td><?=$value['TipoEmpresa']?></td>
-		<td class="action"><a href="<?=base_url()?>sucursal/listado_sucursal/<?=$value['RutEmpresa']?>" class="view">detalle</a>
-		<a href="<?=base_url()?>empresa/modificar_empresa/<?=$value['RutEmpresa']?>" class="edit">Modificar</a>
-		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutEmpresa']?>" class="delete">Eliminar</a>
+		<td><?=$value['Telefonocontacto1Proveedor']?></td>
+		<td><?=$value['Direccioncontacto1Proveedor']?></td>
+		<td class="action"><a href="<?=base_url()?>sucursal/listado_sucursal/<?=$value['RutProveedor']?>" class="view">detalle</a>
+		<a href="<?=base_url()?>empresa/modificar_empresa/<?=$value['RutProveedor']?>" class="edit">Modificar</a>
+		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" class="delete">Eliminar</a>
 		</td>
 	</tr>
 	

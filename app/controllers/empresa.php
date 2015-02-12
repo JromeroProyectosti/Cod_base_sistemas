@@ -3,7 +3,7 @@ class Empresa extends MY_Controller{
 	
 	public function __construct(){
 		
-		parent::__construct(TRUE);
+		parent::__construct(FALSE);
                 
 		if(!$this->session->userdata('username')){
 			redirect(base_url()."login");
@@ -31,17 +31,7 @@ class Empresa extends MY_Controller{
 		$this->load->view("template/footer",$this->data);
 
 	}
-	public function addempresa(){
-		$this->data['titulo']="Empresa - Agregar";
-		$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
-		$detalle['ciudad']=$this->common_model->get_ciudad();
-		$detalle['comuna']=$this->common_model->get_comuna();
-		$detalle['region']=$this->common_model->get_region();
-		$this->load->view("template/header",$this->data);
-		$this->load->view("mantenedores/empresa/agregar",$detalle);
-		$this->load->view("template/footer",$this->data);
-	}
-
+	
 	public function guardarempresa(){
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('txtRutEmpresa','Rut Empresa','required|callback_valida_rut');
@@ -49,10 +39,10 @@ class Empresa extends MY_Controller{
 		$this->form_validation->set_rules('txtRazonSocial','Razon Social','required|max_length[250]');
 		$this->form_validation->set_rules('txtTelefono','Telefono','max_length[50]');
 		$this->form_validation->set_rules('txtDireccion','Razon Social','max_length[250]');
-		$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
+		//$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
 		if($this->form_validation->run()===FALSE){
 			$this->data['titulo']="Empresa - Agregar";
-			$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
+			//$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
 			$detalle['ciudad']=$this->common_model->get_ciudad();
 			$detalle['comuna']=$this->common_model->get_comuna();
 			$detalle['region']=$this->common_model->get_region();
@@ -60,11 +50,12 @@ class Empresa extends MY_Controller{
 			$this->load->view("mantenedores/empresa/agregar",$detalle);
 			$this->load->view("template/footer",$this->data);
 		}else{
-			$this->empresas_model->add_empresa($this->session->userdata('idMaestra'));
-			redirect('empresa/listado_empresas');
+			$this->empresas_model->add_empresa();
+			redirect('listado_empresas');
 		}
 
 	}
+        /*
 	public function modificarempresa(){
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('txtNombre','Nombre Empresa','required');
@@ -86,7 +77,7 @@ class Empresa extends MY_Controller{
 			redirect('empresa/listado_empresas');
 		}
 
-	}
+	}*/
 	public function generaoptionciudad(){
 		$data=$this->common_model->get_ciudad();
 		$option='<option value=0>--Selecciona una Ciudad--</option>';
@@ -111,34 +102,7 @@ class Empresa extends MY_Controller{
 		}
 	}
 
-	public function listado_empresas(){
-               
-            
-		$this->data['titulo']="Empresas - Listado";
-		$detalle['listado']=$this->empresas_model->listado_empresas($this->session->userdata('idMaestra'));
-		$this->load->view("template/header",$this->data);
-		$this->load->view("mantenedores/empresa/listado",$detalle);
-		$this->load->view("template/footer",$this->data);
-	}
+	
 
-	public function modificar_empresa($rutempresa){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('txtNombre','Nombre Empresa','required');
-		$this->form_validation->set_rules('txtRazonSocial','Razon Social','required|max_length[250]');
-		$this->form_validation->set_rules('txtTelefono','Telefono','max_length[50]');
-		$this->form_validation->set_rules('txtDireccion','Razon Social','max_length[250]');
-		$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
-		if($this->form_validation->run()===FALSE){
-			$this->data['titulo']="Empresas - Modificar";
-			$detalle['detalle']=$this->empresas_model->get_empresa($rutempresa);
-			$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
-			$this->load->view("template/header",$this->data);
-			$this->load->view("mantenedores/empresa/modificar",$detalle);
-			$this->load->view("template/footer",$this->data);
-		}else{
-			$this->empresas_model->modificar_empresa();
-			redirect('empresa/listado_empresas');
-		}
-		
-	}
+	
 }

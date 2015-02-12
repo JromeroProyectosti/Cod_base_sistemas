@@ -33,13 +33,13 @@ class Usuarios extends CI_Controller{
 			$sucursales='';
 			foreach($query as $row){
                                 $id_usuario=$row['IdUsuario'];
-				$nombre_completo=$row['NombreUsuario']." ".$row['Apellido'];
-				$nombre_empresa=$row['NombreEmpresa'];
-				$tipo_empresa=$row['TipoEmpresa'];
-				$rol=$row['IdRol'];
-				$idMaestra=$row['IdMaestra'];
-				$logo=$row['Logo'];
-				$sucursales.=$row['NombreSucursal']."<br>";
+				$nombre_completo=$row['NombreUsuario']." ".$row['ApellidoUsuario'];
+				//$nombre_empresa=$row['NombreEmpresa'];
+				//$tipo_empresa=$row['TipoEmpresa'];
+				$rol=$row['IdTipousuario'];
+				//$idMaestra=$row['IdMaestra'];
+				//$logo=$row['Logo'];
+				//$sucursales.=$row['NombreSucursal']."<br>";
 
 			}
 			$this->session->set_userdata(array(

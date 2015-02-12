@@ -9,12 +9,19 @@ class My_Controller extends CI_Controller
         parent::__construct();
         $this->secured_controller=$secured_controller;
         $this->load->model("permisos_model");
-      
+        $this->_check_user();
+        
         $this->secure_actions = $this->permisos_model->lista_permisos($this->session->userdata("id_usuario"),$this->router->class);
        /* print_r($this->secure_actions);
         echo $this->router->method;*/
         if($this->secured_controller){
             $this->_check_security();
+        }
+    }
+    protected function _check_user(){
+        if(!$this->session->userdata("id_usuario"))
+        {
+            redirect("login");  
         }
     }
     protected function _check_security()

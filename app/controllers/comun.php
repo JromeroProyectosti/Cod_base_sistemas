@@ -6,6 +6,7 @@ class Comun extends CI_Controller{
 	
 	public function generaoptionciudad(){
 		$region=$this->input->post('region');
+                //$region=$this->input->get('region');
 		
 		$data=$this->common_model->get_ciudad($region);
 		$option='<option value=0>--Selecciona una Ciudad--</option>';
@@ -13,7 +14,7 @@ class Comun extends CI_Controller{
 			# code...
 			$option.='<option value="'.$value['IdCiudad'].'">'.$value['NombreCiudad'].'</option>';
 		}
-
+                
 		echo $option;
 	}
 	public function generaoptioncomuna(){

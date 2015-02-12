@@ -44,9 +44,10 @@ $route['login']="usuarios";
 /*$route['empresa']="empresa/view";
 $route['empresa/(:any)']="empresa/view/$1";*/
 $route['guardar_empresa']="empresa/guardarempresa";
-$route['listado_empresas']="empresa/listado_empresas";
-$route['addempresa']="empresa/addempresa";
-$route['empresa/modificar_empresa']="empresa/modificar_empresa";
+$route['listado_empresas']="sec_empresa/listado_empresas";
+$route['addempresa']="sec_empresa/addempresa";
+$route['modificar_empresa/(:any)']="sec_empresa/modificar_empresa/$1";
+$route['detalle_empresa/(:any)']="sec_empresa/detalle_empresa/$1";
 $route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
 
 $route['listado_sucursal']="listado_sucursal";

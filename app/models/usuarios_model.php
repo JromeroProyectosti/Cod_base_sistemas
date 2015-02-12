@@ -1,45 +1,67 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Usuarios_model extends CI_Model{
-	public function __construct(){
-		parent::__construct();
-		define("DBEXT","ptv_");
-	}
+    public function __construct(){
+        parent::__construct();
+        define("DBEXT","");
+    }
 
-	public function very_user($usuario, $password){
-		//$result=$this->db->get_where('usuario', array('Usuario'=>$usuario,'Clave'=>$password));
-		$result=$this->db->query("select u.IdUsuario, u.NombreUsuario, u.Apellido, e.NombreEmpresa, t.TipoEmpresa, u.IdRol,u.IdMaestra, m.Logo, s.NombreSucursal
-		from ".DBEXT."usuario u, ".DBEXT."empresa e, ".DBEXT."tipoempresa t, ".DBEXT."sucursalusuario su,".DBEXT."sucursal s,".DBEXT."maestra m 
-		where	u.Usuario='$usuario' and 
-			u.Clave = '$password' and
-			su.IdUsuario=u.IdUsuario and
-			su.IdSucursal=s.IdSucursal and
-			s.RutEmpresa = e.RutEmpresa and
-			e.IdTipoempresa = t.IdTipoempresa and
-			e.IdMaestra=m.IdMaestra ");
-		
-		
-		if($result->num_rows()>0){
-			return $result->result_array();
-		}else{
-			return false;
-		}
-	}
-	public function menu($idUsuario){
-	
-		$this->db->select("NombreMenu,RutaMenu");
-		$this->db->from("menu");
-		$this->db->join("submenu","submenu.IdMenu=menu.IdMenu");
-		$this->db->join("usuariosubmenu","usuariosubmenu.IdSubmenu=submenu.IdSubmenu");
-		$this->db->where("usuariosubmenu.IdUsuario",$idUsuario);
-		$result=$this->db->get();
+    public function very_user($usuario, $password){
+        //$result=$this->db->get_where('usuario', array('Usuario'=>$usuario,'Clave'=>$password));
+        $result=$this->db->query("select u.IdUsuario, u.NombreUsuario, u.ApellidoUsuario, u.IdTipousuario
+        from ".DBEXT."Usuarios u
+        where	u.UsuarioUsuario='$usuario' and 
+                u.ClaveUsuario = md5('$password') and
+                u.IdEstadousuario=1 ");
 
-		if($result->num_rows()){
-			return $result->row_array();
 
-		}else{
-			return false;
-		}
-	}
+        if($result->num_rows()>0){
+                return $result->result_array();
+        }else{
+                return false;
+        }
+    }
+    public function menu($idUsuario){
+
+        $this->db->select("NombreMenu,RutaMenu");
+        $this->db->from("menu");
+        $this->db->join("submenu","submenu.IdMenu=menu.IdMenu");
+        $this->db->join("usuariosubmenu","usuariosubmenu.IdSubmenu=submenu.IdSubmenu");
+        $this->db->where("usuariosubmenu.IdUsuario",$idUsuario);
+        $result=$this->db->get();
+
+        if($result->num_rows()){
+                return $result->row_array();
+
+        }else{
+                return false;
+        }
+    }
+    public function listado_usuarios($id_maestra,$filtro=""){
+
+        $this->db->select('*');
+        $this->db->from('Usuarios u');
+        $this->db->join('Tipousuario tu','tu.IdTipousuario=u.idTipousuario');
+        $this->db->join('Estadousuario eu','su.IdEstadousuario=u.idEstadousuario');
+        //$this->db->join('tipoempresa','tipoempresa.IdTipoempresa=empresa.IdTipoempresa');
+        //$this->db->where('IdMaestra',$id_maestra);
+        if($filtro!=""){
+            $this->db->or_like("NombreEstadousuario",$filtro);
+            $this->db->or_like("NombreTipousuario",$filtro);
+            $this->db->or_like("NombreUsuario",$filtro);
+            $this->db->or_like("ApellidoUsuario",$filtro);
+            $this->db->or_like("UsuarioUsuario",$filtro);
+        }
+        $result=$this->db->get();
+
+        if($result->num_rows()){
+
+
+            return $result->result_array();
+
+        }else{
+                return false;
+        }
+    }
 }
 
