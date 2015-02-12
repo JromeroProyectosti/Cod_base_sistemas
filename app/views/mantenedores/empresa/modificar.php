@@ -1,28 +1,76 @@
 <h3>Modificar</h3>
-<fieldset>
-    <? echo form_open_multipart('empresa/modificar_empresa/'.$detalle['RutProveedor']);?>
-        <p><label>Rut Empresa:</label><?=$detalle['RutProveedor']?><input type="hidden" class="text-long" name='txtRut' value='<?=$detalle['RutEmpresa']?>'/></p>
-        <p><label>Nombre Empresa:</label><input type="text" class="text-long" name='txtNombre' value='<?=$detalle['NombreProveedor']?>'/><div class='error' id='err_rut'><?=form_error('txtNombre')?></div></p>
-        <p><label>Razon Social:</label><input type="text" class="text-long" name='txtRazonSocial' value='<?=$detalle['RazonSocial']?>'/><div class='error' id='err_rut'><?=form_error('txtRazonSocial')?></div></p>
-        <p><label>Telefono:</label><input type="text" class="text-long" name='txtTelefono'  value='<?=$detalle['Telefonocontacto1Proveedor']?>'/><div class='error' id='err_rut'><?=form_error('txtTelefono')?></div></p>
-        <p><label>Direccion:</label><input type="text" class="text-long" name='txtDireccion' value='<?=$detalle['Correocontacto1Proveedor']?>'/><div class='error' id='err_rut'><?=form_error('txtDireccion')?></div></p>    
-        <p><label class="content">Region</label><select id='cboRegion' onchange='buscar_ciudad(this.value)' class="text-long">
+
+
+<?php echo form_open('empresa/modificar_empresa/',array('class'=>'form-horizontal'));?>
+<div class="control-group">
+    <input type="hidden" class="text-long" name='txtRut' value='<?=$detalle['RutEmpresa']?>'/>
+    <p><label>Rut Empresa: <strong><?=$detalle['RutProveedor']?></strong></label></p>
+</div>
+<div class="control-group">
+    <label class="control-label" for="txtNombreEmpresa">Nombre Empresa</label>
+    <div class="controls">
+        <input type='text' class="text-long" name='txtNombreEmpresa' value='<?=$detalle['NombreProveedor']?>'/>* 
+        <?php 
+        if(form_error('txtNombreEmpresa')){
+            ?>
+            <div class='alert alert-error' id='err_rut'><a href="#" class="close" data-dismiss="alert">&times;</a><?=form_error('txtNombreEmpresa')?> </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="txtRazonSocial">Raz&oacute;n Social</label>
+    <div class="controls">
+        <input type='text' class="text-long" name='txtRazonSocial' value='<?=$detalle['RazonSocial']?>'/>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="txtTelefono">Telefono</label>
+    <div class="controls">
+        <input type='text' class="text-long" name='txtTelefono' value='<?=$detalle['Telefonocontacto1Proveedor']?>'/>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="txtDireccion">Direcci&oacute;n</label>
+    <div class="controls">
+        <input type='text' class="text-long" name='txtDireccion' value='<?=$detalle['Correocontacto1Proveedor']?>'/> 
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="cboRegion1">Ciudad</label>
+    <div class="controls">
+        <select id='cboRegion' name="cboRegion1" onchange='buscar_ciudad(this.value)' >
 	<?php foreach($region as $row):?>
 	<option value='<?=$row['IdRegion']?>' 
        <?php if($row['IdRegion']==$IdRegion) echo " Selected"; ?>
         ><?=$row['NombreRegion']?></option>
 	<?php endforeach ?>
-        </select>*</p>
-        <p><label class="content">Ciudad</label><select id='cboCiudad' disabled onchange='buscar_comuna(this.value)' class="text-long">
-        <?php foreach($ciudad as $row):?>
+		</select>*
+                
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="cboCiudad1">Comuna</label>
+    <div class="controls">
+        <select id='cboCiudad' name="cboCiudad1" onchange='buscar_comuna(this.value)' disables >
+            <?php foreach($ciudad as $row):?>
                 <option value='<?=$row['IdCiudad']?>'><?=$row['NombreCiudad']?></option>
 	<?php endforeach ?>
-        </select>*</p>
-        <p><label class="content">Comuna</label><select id='cboComuna' name='cboComuna' disabled class="text-long">
-                <?php foreach($comuna as $row):?>
+		</select>*
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="cboComuna1">Regi&oacute;n</label>
+    <div class="controls">
+        <select id='cboComuna' name="cboComuna1"  disabled>
+            <?php foreach($comuna as $row):?>
                 <option value='<?=$row['IdComuna']?>'><?=$row['NombreComuna']?></option>
 	<?php endforeach ?>
-        </select>*</p>
-        <input type="submit" value="Guardar" />
-    </form>
-</fieldset>
+		</select>*
+    </div>
+</div>
+			
+<p><input type='submit' value='Modificar' class="btn btn-primary" data-loading-text="Loading..."></p>
+<button type="button" class="btn btn-primary" data-oading-text="Cargando....">Modificar</button>
+</form>

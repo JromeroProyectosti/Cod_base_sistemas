@@ -12,10 +12,12 @@
         <link href="<?=base_url();?>css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="<?=base_url();?>css/bootstrap-responsive.css" rel="stylesheet" media="screen">
         <script type="text/javascript" src='<?=base_url();?>js/ajax.js'></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="<?=base_url();?>js/bootstrap.js"></script>
+
 </head>
 <body>
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="<?=base_url();?>js/bootstrap.js"></script>
+    
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
