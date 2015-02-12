@@ -12,9 +12,9 @@ class Usuarios extends CI_Controller{
 	public function index(){
 		$this->data['titulo']=ucfirst("Login");
 		$this->data['error']="";
-		$this->load->view("template/header",$this->data);
+		//$this->load->view("template/header",$this->data);
 		$this->load->view("login",$this->data);
-		$this->load->view("template/footer",$this->data);
+		//$this->load->view("template/footer",$this->data);
 		$this->session->sess_destroy();
 		//$this->config->set_item("navigation","");
 	}
@@ -70,10 +70,10 @@ class Usuarios extends CI_Controller{
 			redirect(base_url()."home");
 		}else{
 			$this->data['titulo']=ucfirst("Login");
-			$this->data['error']="El Usuario/Password es incorrecto";
-			$this->load->view("template/header",$this->data);
+			$this->data['error']="<div class='alert alert-error'>El Usuario/Password es incorrecto</div>";
+			//$this->load->view("template/header",$this->data);
 			$this->load->view("login",$this->data);
-			$this->load->view("template/footer",$this->data);
+			//$this->load->view("template/footer",$this->data);
 		$this->session->sess_destroy();
                 }
 	}

@@ -4,31 +4,31 @@ echo form_open("addempresa",array('class'=>'jNice'));
 
 ?>
 <fieldset>
-<input type="submit" value="Nueva Empresa">
+<input type="submit" value="Nueva Empresa" class="btn btn-primary">
 </fieldset>
-<table>
-	<tr class="text-medium">
-		<td>Rut Empresa</td>
-		<td>Nombre Empresa</td>
-
-		<td></td>
+<table class="table table-striped">
+	<tr >
+		<th>Rut Empresa</th>
+                <th>Nombre Empresa</th>
+                <th>Razon Social</th>
+		<th></th>
+                <th></th>
+                <th></th>
 	</tr>
 	<?php
             $i=0;
             foreach ($listado as $value): 
-                $class='';
-                if($i%2){
-                    $class="class='odd'";
-                }
-                $i++;
+                
             ?>
 	
-	<tr <?=$class?>>
+	<tr >
 		<td><?=$value['RutProveedor']?></td>
 		<td><?=$value['NombreProveedor']?></td>
-		<td class="action"><a href="<?=base_url()?>detalle_empresa/<?=$value['RutProveedor']?>" class="view">detalle</a>
-		<a href="<?=base_url()?>modificar_empresa/<?=$value['RutProveedor']?>" class="edit">Modificar</a>
-		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" class="delete">Eliminar</a>
+                
+		<td><?=$value['RazonSocial']?></td>
+                <td class="action"><a href="<?=base_url()?>detalle_empresa/<?=$value['RutProveedor']?>" ><i class="icon-eye-open"></i></a></td>
+                <td><a href="<?=base_url()?>modificar_empresa/<?=$value['RutProveedor']?>" ><i class="icon-edit"></i></a></td>
+                <td><a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" ><i class="icon-remove"></i></a></td>
 		</td>
 	</tr>
 	<?php endforeach ?>

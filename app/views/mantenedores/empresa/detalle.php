@@ -1,10 +1,10 @@
 <h3>Modificar</h3>
 <fieldset>
-    <p><label>Rut Empresa: <?=$detalle['RutProveedor']?></label><label></label></p>
-    <p><label>Nombre Empresa: <?=$detalle['NombreProveedor']?></label><label></label></p>
-    <p><label>Razon Social: <?=$detalle['RazonSocial']?></label><label></label></p>
-    <p><label>Telefono: <?=$detalle['Telefonocontacto1Proveedor']?></label><label></label></p>
-    <p><label>Direccion: <?=$detalle['Correocontacto1Proveedor']?></label><label></label></p>    
+    <p><label>Rut Empresa: <strong><?=$detalle['RutProveedor']?></strong></label></p>
+    <p><label>Nombre Empresa: <strong><?=$detalle['NombreProveedor']?></strong></label></p>
+    <p><label>Razon Social: <strong><?=$detalle['RazonSocial']?></strong></label><label></label></p>
+    <p><label>Telefono:<strong> <?=$detalle['Telefonocontacto1Proveedor']?></strong></label><label></label></p>
+    <p><label>Direccion:<strong> <?=$detalle['Correocontacto1Proveedor']?></strong></label><label></label></p>    
         <p><label class="content">Region</label><select id='cboRegion'  class="text-long" disabled>
 	<?php foreach($region as $row):?>
 	<option value='<?=$row['IdRegion']?>' 

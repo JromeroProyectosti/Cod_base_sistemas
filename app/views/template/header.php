@@ -3,36 +3,64 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-
-	<title><?=$titulo?></title>
+	<title><?=$titulo?></title><!--
 	<link href="<?=base_url();?>css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src='<?=base_url();?>js/jquery.js'></script>
-	<script type="text/javascript" src='<?=base_url();?>js/ajax.js'></script>
-	<script type="text/javascript" src="<?=base_url();?>js/jNice.js"></script>
+	
+	<script type="text/javascript" src="<?=base_url();?>js/jNice.js"></script>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link href="<?=base_url();?>css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="<?=base_url();?>css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+        <script type="text/javascript" src='<?=base_url();?>js/ajax.js'></script>
 </head>
 <body>
-<div id="wrapper">
-<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
-	<h1><a href="#"><span>Sistema Base</span></a></h1>
-	
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="<?=base_url();?>js/bootstrap.js"></script>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                
+                
+               <!-- Be sure to leave the brand out there if you want it shown -->
+               <a class="brand" href="#">Sistema ON-LINE</a>
+                <!-- Everything you want hidden at 940px or less, place within here -->
+                <div class="nav-collapse collapse">
+                    <ul class="nav nav-tabs">
+                        <li><a href="<?=base_url()?>">DASHBROAD</a></li>
+                        <li class="dropdown"><a href="<?=base_url()?>listado_empresas" class="dropdown-toggle" data-toggle="dropdown">Mantenedor <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?=base_url()?>listado_empresas">Proveedores</a></li>
+                            <li><a href="#">Usuarios</a></li>
+                            <li><a href="#">Permisos</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="#">Vendedores</a></li>
+                        </ul>        
+                        </li>
+                        <li><a href="#">Usuarios</a></li>
 
-	 <!-- You can name the links with lowercase, they will be transformed to uppercase by CSS, we prefered to name them with uppercase to have the same effect with disabled stylesheet -->
-	<?php #echo menu_ul();?>
-	 <!-- // #end mainNav -->
-	<div id="containerHolder">
-		<div id="container">
-			<div id="sidebar">
-				<ul class="sideNav">
-					<li><a href="#">Exchange</a></li>
-					<li><a href="#" class="active">Print resources</a></li>
-					<li><a href="#">Training &amp; Support</a></li>
-					<li><a href="#">Books</a></li>
-					<li><a href="#">Safari books online</a></li>
-					<li><a href="#">Events</a></li>
-				</ul>
-				<!-- // .sideNav -->
-			</div>
-			<!-- // #sidebar -->
-			<!-- h2 stays for breadcrumbs -->
-			<h2><a href="#">Dashboard</a> &raquo; <a href="#" class="active">Print resources</a></h2>
-			<div id="main">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="span12"><h1>TITULO</h1></div>
+        <div class="row-fluid">
+            
+            <!-- MENU-->
+            
+            <div class="span2">
+                
+                <h2>Menu</h2>
+            </div>
+            <!-- COntent -->
+            <div class="span10">
+       
+        
+ 

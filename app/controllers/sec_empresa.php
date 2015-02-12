@@ -19,14 +19,34 @@ class Sec_empresa extends My_Controller {
      
     }
     public function addempresa(){
-        $this->data['titulo']="Empresa - Agregar";
+        /*$this->data['titulo']="Empresa - Agregar";
         //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
         $detalle['ciudad']=$this->common_model->get_ciudad();
         $detalle['comuna']=$this->common_model->get_comuna();
         $detalle['region']=$this->common_model->get_region();
         $this->load->view("template/header",$this->data);
         $this->load->view("mantenedores/empresa/agregar",$detalle);
-        $this->load->view("template/footer",$this->data);
+        $this->load->view("template/footer",$this->data);*/
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('txtRutEmpresa','Rut Empresa','required|callback_valida_rut');
+        $this->form_validation->set_rules('txtNombreEmpresa','Nombre Empresa','required');
+        $this->form_validation->set_rules('txtRazonSocial','Razon Social','required|max_length[250]');
+        $this->form_validation->set_rules('txtTelefono','Telefono','max_length[50]');
+        $this->form_validation->set_rules('txtDireccion','Razon Social','max_length[250]');
+        //$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
+        if($this->form_validation->run()===FALSE){
+                $this->data['titulo']="Empresa - Agregar";
+                //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
+                $detalle['ciudad']=$this->common_model->get_ciudad();
+                $detalle['comuna']=$this->common_model->get_comuna();
+                $detalle['region']=$this->common_model->get_region();
+                $this->load->view("template/header",$this->data);
+                $this->load->view("mantenedores/empresa/agregar",$detalle);
+                $this->load->view("template/footer",$this->data);
+        }else{
+                $this->empresas_model->add_empresa();
+                redirect('listado_empresas');
+        }
     }
     public function modificar_empresa($rutempresa){
         $this->load->library('form_validation');
