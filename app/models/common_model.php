@@ -41,4 +41,22 @@ class Common_model extends CI_Model{
             $result=$this->db->get('region');
             return $result->result_array();
 	}
+        public function get_estado_usuario($id_estado=0){
+
+            $this->db->order_by("OrdenEstadousuario","Asc");
+            if($id_estado>0){
+                $this->db->where('IdEstadousuario',$id_estado);
+            }
+            $result=$this->db->get('estadousuario');
+            return $result->result_array();
+	}
+         public function get_tipo_usuario($id_perfil=0){
+
+            $this->db->order_by("NombreTipousuario","Asc");
+            if($id_perfil>0){
+                $this->db->where('IdTipousuario',$id_perfil);
+            }
+            $result=$this->db->get('tipousuario');
+            return $result->result_array();
+	}
 }

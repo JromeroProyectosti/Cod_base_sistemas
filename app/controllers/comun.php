@@ -28,4 +28,26 @@ class Comun extends CI_Controller{
 
 		echo $option;
 	}
+        public function generaoptionestadousuario(){
+		$estado=$this->input->post('estadousuario');
+		$data=$this->common_model->get_estado_usuario($estado);
+		$option='<option value=0>--Selecciona un Estado--</option>';
+		foreach ($data as  $value) {
+			# code...
+			$option.='<option value="'.$value['IdEstadousuario'].'">'.$value['NombreEstadousuario'].'</option>';
+		}
+
+		echo $option;
+	}
+        public function generaoptiontipousuario(){
+		$tipousuario=$this->input->post('tipousuario');
+		$data=$this->common_model->get_tipo_usuario($tipousuario);
+		$option='<option value=0>--Selecciona un Rol--</option>';
+		foreach ($data as  $value) {
+			# code...
+			$option.='<option value="'.$value['IdTipousuario'].'">'.$value['NombreTipousuario'].'</option>';
+		}
+
+		echo $option;
+	}
 }

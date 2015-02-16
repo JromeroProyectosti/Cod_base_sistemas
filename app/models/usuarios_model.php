@@ -42,7 +42,7 @@ class Usuarios_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('Usuarios u');
         $this->db->join('Tipousuario tu','tu.IdTipousuario=u.idTipousuario');
-        $this->db->join('Estadousuario eu','su.IdEstadousuario=u.idEstadousuario');
+        $this->db->join('Estadousuario eu','eu.IdEstadousuario=u.idEstadousuario');
         //$this->db->join('tipoempresa','tipoempresa.IdTipoempresa=empresa.IdTipoempresa');
         //$this->db->where('IdMaestra',$id_maestra);
         if($filtro!=""){
@@ -62,6 +62,24 @@ class Usuarios_model extends CI_Model{
         }else{
                 return false;
         }
+    }
+    public function add_usuario(){
+        try{
+        $this->db->set("idTipousuario",$this->input->post("cboTipo1"));
+        $this->db->set("idEstadousuario",$this->input->post("cboEstado1"));
+        $this->db->set("RutUsuario",$this->input->post("txtRutUsuario"));
+        $this->db->set("NombreUsuario",$this->input->post("txtNombreUsuario"));
+        $this->db->set("ApellidoUsuario",$this->input->post("txtApellidoUsuario"));
+        $this->db->set("CorreoUsuario",$this->input->post("txtCorreo"));
+        $this->db->set("UsuarioUsuario",$this->input->post("txtUsuario"));
+        $this->db->set("claveUsuario",md5($this->input->post("txtPassword")));
+        $this->db->set("FecharegistroUsuario", date());
+        $this->db->insert('Usuarios');
+        }
+        catch (Exception $e){
+            
+        }
+        
     }
 }
 

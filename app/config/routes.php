@@ -49,6 +49,9 @@ $route['addempresa']="sec_empresa/addempresa";
 $route['modificar_empresa/(:any)']="sec_empresa/modificar_empresa/$1";
 $route['detalle_empresa/(:any)']="sec_empresa/detalle_empresa/$1";
 $route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
+$route['crear_usuario']="sec_usuario/crear";
+$route['modificar_usuario']="sec_usuario/modificar";
+$route['listado_usuarios']="sec_usuario/listar";
 
 $route['listado_sucursal']="listado_sucursal";
 $route['comun/generaoptionciudad']="comun/generaoptionciudad";

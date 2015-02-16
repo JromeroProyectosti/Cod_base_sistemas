@@ -33,16 +33,16 @@ class Empresas_model extends CI_Model{
     public function modificar_empresa(){
 
 
-            $data=array('NombreEmpresa'=>$this->input->post('txtNombre'),
+            $data=array('NombreProveedor'=>$this->input->post('txtNombreEmpresa'),
                             'RazonSocial'=>$this->input->post('txtRazonSocial'),
-                            'Telefono'=>$this->input->post('txtTelefono'),
-                            'Direccion'=>$this->input->post('txtDireccion'),
-                            'IdTipoempresa'=>$this->input->post('cboTipoEmpresa')
+                            'Telefonocontacto1Proveedor'=>$this->input->post('txtTelefono'),
+                            'Correocontacto1Proveedor'=>$this->input->post('txtDireccion'),
+                            'IdComuna'=>$this->input->post('cboComuna1')
             );
             $this->db->where('RutProveedor',$this->input->post('txtRut'));
-            $this->db->update('Proveedor',$data);
+            $this->db->update('Proveedores',$data);
 
-
+         
 
     }
     public function valida_rut($rut){

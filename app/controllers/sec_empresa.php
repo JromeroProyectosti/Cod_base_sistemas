@@ -58,14 +58,15 @@ class Sec_empresa extends My_Controller {
         $detalle['ciudad']=$ciudad_array;
         $detalle['comuna']=$comuna_array;
         $detalle['IdRegion']=$ciudad_array[0]['IdRegion'];
-
-        $this->form_validation->set_rules('txtNombre','Nombre Empresa','required');
+        
+        $this->form_validation->set_rules('txtNombreEmpresa','Nombre Empresa','required');
         $this->form_validation->set_rules('txtRazonSocial','Razon Social','required|max_length[250]');
         $this->form_validation->set_rules('txtTelefono','Telefono','max_length[50]');
         $this->form_validation->set_rules('txtDireccion','Razon Social','max_length[250]');
         //$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
         if($this->form_validation->run()===FALSE){
-                $this->data['titulo']="Empresas - Modificar";
+            
+                $this->data['titulo']="Proveedor - Modificar";
                 $detalle['detalle']=$this->empresas_model->get_empresa($rutempresa);
                 //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
                 $this->load->view("template/header",$this->data);
@@ -73,7 +74,7 @@ class Sec_empresa extends My_Controller {
                 $this->load->view("template/footer",$this->data);
         }else{
                 $this->empresas_model->modificar_empresa();
-                redirect('empresa/listado_empresas');
+                redirect('listado_empresas');
         }
 
     }
