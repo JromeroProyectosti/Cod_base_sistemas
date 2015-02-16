@@ -3,14 +3,14 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 12-02-2015 a las 06:03:01
+-- Tiempo de generación: 16-02-2015 a las 16:14:10
 -- Versión del servidor: 5.0.51
 -- Versión de PHP: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 -- 
--- Base de datos: `mydb`
+-- Base de datos: `sistema`
 -- 
 
 -- --------------------------------------------------------
@@ -25,7 +25,7 @@ CREATE TABLE `ciudad` (
   `IdRegion` int(11) NOT NULL,
   PRIMARY KEY  (`IdCiudad`),
   KEY `IdRegion` (`IdRegion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 -- 
 -- Volcar la base de datos para la tabla `ciudad`
@@ -101,7 +101,7 @@ CREATE TABLE `compras` (
   PRIMARY KEY  (`IdCompra`),
   KEY `fk_Compra_Usuarios1_idx` (`idUsuario`),
   KEY `fk_Compra_Proveedores1` (`idProveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `compras`
@@ -120,7 +120,7 @@ CREATE TABLE `comuna` (
   `IdCiudad` int(11) NOT NULL,
   PRIMARY KEY  (`IdComuna`),
   KEY `IdCiudad` (`IdCiudad`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=346 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=346 ;
 
 -- 
 -- Volcar la base de datos para la tabla `comuna`
@@ -487,7 +487,7 @@ CREATE TABLE `detallecompra` (
   PRIMARY KEY  (`idDetallecompra`),
   KEY `fk_Detallecompra_Compras1_idx` (`IdCompra`),
   KEY `fk_Detallecompra_Productos1_idx` (`idproductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `detallecompra`
@@ -512,7 +512,7 @@ CREATE TABLE `detallesolicitud` (
   PRIMARY KEY  (`idDetallesolicitud`),
   KEY `fk_Detallesolicitud_Solicitudes1_idx` (`idSolicitud`),
   KEY `fk_Detallesolicitud_Productos1_idx` (`idproductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `detallesolicitud`
@@ -534,7 +534,7 @@ CREATE TABLE `detalleventa` (
   PRIMARY KEY  (`idDetalleventa`),
   KEY `fk_Detalleventa_Ventas1_idx` (`idVenta`),
   KEY `fk_Detalleventa_Productos1_idx` (`idproductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `detalleventa`
@@ -551,7 +551,7 @@ CREATE TABLE `estadosolicitud` (
   `idEstadosolicitud` int(11) NOT NULL auto_increment,
   `NombreEstadosolicitud` varchar(20) NOT NULL,
   PRIMARY KEY  (`idEstadosolicitud`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `estadosolicitud`
@@ -567,16 +567,17 @@ CREATE TABLE `estadosolicitud` (
 CREATE TABLE `estadousuario` (
   `idEstadousuario` int(11) NOT NULL auto_increment,
   `NombreEstadousuario` varchar(200) NOT NULL,
+  `OrdenEstadousuario` int(11) NOT NULL,
   PRIMARY KEY  (`idEstadousuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- 
 -- Volcar la base de datos para la tabla `estadousuario`
 -- 
 
-INSERT INTO `estadousuario` VALUES (1, 'Habilitado');
-INSERT INTO `estadousuario` VALUES (2, 'Inhabilitado');
-INSERT INTO `estadousuario` VALUES (3, 'Validar');
+INSERT INTO `estadousuario` VALUES (1, 'Habilitado', 1);
+INSERT INTO `estadousuario` VALUES (2, 'Inhabilitado', 2);
+INSERT INTO `estadousuario` VALUES (3, 'Validar', 3);
 
 -- --------------------------------------------------------
 
@@ -588,7 +589,7 @@ CREATE TABLE `estadovendedor` (
   `idEstadovendedor` int(11) NOT NULL,
   `NombreVendedor` varchar(200) NOT NULL,
   PRIMARY KEY  (`idEstadovendedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
 -- Volcar la base de datos para la tabla `estadovendedor`
@@ -606,13 +607,14 @@ CREATE TABLE `permisos` (
   `NombrePermiso` varchar(45) default NULL,
   `ConstructorPermiso` varchar(45) default NULL COMMENT 'El metodo del permiso nos permite utilizar dinamicamente los permisos en las clases....cada clase debe tener una implementacion extendida a MY_Controller que genera las reglas.',
   PRIMARY KEY  (`idPermiso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `permisos`
 -- 
 
 INSERT INTO `permisos` VALUES (1, 'Empresas', 'sec_empresa');
+INSERT INTO `permisos` VALUES (2, 'Usuarios', 'sec_usuario');
 
 -- --------------------------------------------------------
 
@@ -627,7 +629,7 @@ CREATE TABLE `permisosacciones` (
   `MetodoPermisoaccion` varchar(45) default NULL COMMENT 'Hace referencia a las acciones dentro de una clase.\n',
   PRIMARY KEY  (`idPermisoaccion`),
   KEY `fk_Permisosacciones_Permisos1_idx` (`idPermiso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- 
 -- Volcar la base de datos para la tabla `permisosacciones`
@@ -637,6 +639,9 @@ INSERT INTO `permisosacciones` VALUES (1, 1, 'Listado de Empresas', 'listado_emp
 INSERT INTO `permisosacciones` VALUES (2, 1, 'Agregar Proveedor', 'addempresa');
 INSERT INTO `permisosacciones` VALUES (3, 1, 'Modificar Proveedor', 'modificar_empresa');
 INSERT INTO `permisosacciones` VALUES (4, 1, 'Detalle Proveedor', 'detalle_empresa');
+INSERT INTO `permisosacciones` VALUES (5, 2, 'Ver Usuarios', 'listar');
+INSERT INTO `permisosacciones` VALUES (6, 2, 'Crear Usuario', 'crear');
+INSERT INTO `permisosacciones` VALUES (7, 2, 'Modificar Usuario', 'modificar');
 
 -- --------------------------------------------------------
 
@@ -662,7 +667,7 @@ CREATE TABLE `productos` (
   `StockProducto` double default NULL,
   `ReservaProducto` double default NULL,
   PRIMARY KEY  (`idproductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `productos`
@@ -689,14 +694,16 @@ CREATE TABLE `proveedores` (
   `Telefonocontacto2Proveedor` varchar(20) default NULL,
   PRIMARY KEY  (`idProveedor`),
   KEY `fk_proveedores_comuna1_idx` (`IdComuna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Volcar la base de datos para la tabla `proveedores`
 -- 
 
-INSERT INTO `proveedores` VALUES (1, 119, '11.111.111-1', 'Ulma Chile', 'Ulma chile andamios y moldajes sa', NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `proveedores` VALUES (1, 119, '11.111.111-1', 'Ulma Chile', 'Ulma chile andamios y moldajes sa', NULL, 'prueba', '123456', NULL, NULL, NULL);
 INSERT INTO `proveedores` VALUES (2, 111, '22.222.222-2', 'empresa ficticia', 'razon social ficicia', NULL, '', '', NULL, NULL, NULL);
+INSERT INTO `proveedores` VALUES (3, 0, '99.999.999-9', 'empresa ficticia', 'razon social ficicia', NULL, 'ESTACION CENTRAL 22', '123456', NULL, NULL, NULL);
+INSERT INTO `proveedores` VALUES (4, 0, '22.222.222-2', 'Prueba ', 'razon social ficicia', NULL, 'ESTACION CENTRAL 22', '123456', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -709,7 +716,7 @@ CREATE TABLE `region` (
   `NombreRegion` varchar(250) NOT NULL,
   `DescripcionRegion` varchar(250) NOT NULL,
   PRIMARY KEY  (`IdRegion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 -- 
 -- Volcar la base de datos para la tabla `region`
@@ -749,7 +756,7 @@ CREATE TABLE `solicitudes` (
   PRIMARY KEY  (`idSolicitud`),
   KEY `fk_Solicitudes_Estadosolicitud1_idx` (`idEstadosolicitud`),
   KEY `fk_Solicitudes_Vendedor1_idx` (`idVendedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `solicitudes`
@@ -766,7 +773,7 @@ CREATE TABLE `tipousuario` (
   `idTipousuario` int(11) NOT NULL auto_increment,
   `NombreTipousuario` varchar(200) NOT NULL,
   PRIMARY KEY  (`idTipousuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `tipousuario`
@@ -797,13 +804,14 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `RutUsuario_UNIQUE` (`RutUsuario`),
   KEY `fk_Usuario_Tipousuario_idx` (`idTipousuario`),
   KEY `fk_Usuario_Estadousuario1_idx` (`idEstadousuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `usuarios`
 -- 
 
 INSERT INTO `usuarios` VALUES (1, 1, 1, '11.111.111-1', 'Admin', 'Admin', 'jromero@proyectosti.cl', 'jromero', '25d55ad283aa400af464c76d713c07ad', '2015-02-10 00:00:00', NULL);
+INSERT INTO `usuarios` VALUES (2, 2, 1, '15395694-4', 'Jonathan', 'Romero', 'jonathan.romero@gmail.com', 'jromero34', 'md5(''Jr070382'')', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -816,7 +824,7 @@ CREATE TABLE `usuarios_permisosacciones` (
   `idUsuario` int(11) NOT NULL,
   KEY `fk_Usuarios_Permisosacciones_Usuarios1_idx` (`idUsuario`),
   KEY `fk_Usuarios_Permisosacciones_Permisosacciones1` (`idPermisoaccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
 -- Volcar la base de datos para la tabla `usuarios_permisosacciones`
@@ -826,6 +834,9 @@ INSERT INTO `usuarios_permisosacciones` VALUES (1, 1);
 INSERT INTO `usuarios_permisosacciones` VALUES (2, 1);
 INSERT INTO `usuarios_permisosacciones` VALUES (3, 1);
 INSERT INTO `usuarios_permisosacciones` VALUES (4, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (5, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (6, 2);
+INSERT INTO `usuarios_permisosacciones` VALUES (7, 1);
 
 -- --------------------------------------------------------
 
@@ -847,7 +858,7 @@ CREATE TABLE `vendedor` (
   PRIMARY KEY  (`idVendedor`,`comuna_IdComuna`),
   KEY `fk_Vendedor_Estadovendedor1_idx` (`idEstadovendedor`),
   KEY `fk_vendedor_comuna1_idx` (`comuna_IdComuna`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
 -- Volcar la base de datos para la tabla `vendedor`
@@ -869,100 +880,9 @@ CREATE TABLE `ventas` (
   PRIMARY KEY  (`idVenta`),
   KEY `fk_Ventas_Vendedor1_idx` (`idVendedor`),
   KEY `fk_Ventas_Usuarios1_idx` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `ventas`
 -- 
 
-
--- 
--- Filtros para las tablas descargadas (dump)
--- 
-
--- 
--- Filtros para la tabla `ciudad`
--- 
-ALTER TABLE `ciudad`
-  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`IdRegion`) REFERENCES `region` (`IdRegion`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
--- 
--- Filtros para la tabla `compras`
--- 
-ALTER TABLE `compras`
-  ADD CONSTRAINT `fk_Compra_Proveedores1` FOREIGN KEY (`idProveedor`) REFERENCES `proveedores` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Compra_Usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `comuna`
--- 
-ALTER TABLE `comuna`
-  ADD CONSTRAINT `comuna_ibfk_1` FOREIGN KEY (`IdCiudad`) REFERENCES `ciudad` (`IdCiudad`);
-
--- 
--- Filtros para la tabla `detallecompra`
--- 
-ALTER TABLE `detallecompra`
-  ADD CONSTRAINT `fk_Detallecompra_Compras1` FOREIGN KEY (`IdCompra`) REFERENCES `compras` (`IdCompra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Detallecompra_Productos1` FOREIGN KEY (`idproductos`) REFERENCES `productos` (`idproductos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `detallesolicitud`
--- 
-ALTER TABLE `detallesolicitud`
-  ADD CONSTRAINT `fk_Detallesolicitud_Productos1` FOREIGN KEY (`idproductos`) REFERENCES `productos` (`idproductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Detallesolicitud_Solicitudes1` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitudes` (`idSolicitud`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `detalleventa`
--- 
-ALTER TABLE `detalleventa`
-  ADD CONSTRAINT `fk_Detalleventa_Productos1` FOREIGN KEY (`idproductos`) REFERENCES `productos` (`idproductos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Detalleventa_Ventas1` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `permisosacciones`
--- 
-ALTER TABLE `permisosacciones`
-  ADD CONSTRAINT `fk_Permisosacciones_Permisos1` FOREIGN KEY (`idPermiso`) REFERENCES `permisos` (`idPermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `proveedores`
--- 
-ALTER TABLE `proveedores`
-  ADD CONSTRAINT `proveedores_ibfk_1` FOREIGN KEY (`IdComuna`) REFERENCES `comuna` (`IdComuna`);
-
--- 
--- Filtros para la tabla `solicitudes`
--- 
-ALTER TABLE `solicitudes`
-  ADD CONSTRAINT `fk_Solicitudes_Estadosolicitud1` FOREIGN KEY (`idEstadosolicitud`) REFERENCES `estadosolicitud` (`idEstadosolicitud`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Solicitudes_Vendedor1` FOREIGN KEY (`idVendedor`) REFERENCES `vendedor` (`idVendedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `usuarios`
--- 
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_Usuario_Estadousuario1` FOREIGN KEY (`idEstadousuario`) REFERENCES `estadousuario` (`idEstadousuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Usuario_Tipousuario` FOREIGN KEY (`idTipousuario`) REFERENCES `tipousuario` (`idTipousuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `usuarios_permisosacciones`
--- 
-ALTER TABLE `usuarios_permisosacciones`
-  ADD CONSTRAINT `fk_Usuarios_Permisosacciones_Permisosacciones1` FOREIGN KEY (`idPermisoaccion`) REFERENCES `permisosacciones` (`idPermisoaccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Usuarios_Permisosacciones_Usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `vendedor`
--- 
-ALTER TABLE `vendedor`
-  ADD CONSTRAINT `fk_vendedor_comuna1` FOREIGN KEY (`comuna_IdComuna`) REFERENCES `comuna` (`IdComuna`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Vendedor_Estadovendedor1` FOREIGN KEY (`idEstadovendedor`) REFERENCES `estadovendedor` (`idEstadovendedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- 
--- Filtros para la tabla `ventas`
--- 
-ALTER TABLE `ventas`
-  ADD CONSTRAINT `fk_Ventas_Usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Ventas_Vendedor1` FOREIGN KEY (`idVendedor`) REFERENCES `vendedor` (`idVendedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
