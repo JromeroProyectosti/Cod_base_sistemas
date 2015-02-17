@@ -14,11 +14,11 @@ class Empresas_model extends CI_Model{
             $this->db->set('RutProveedor',$this->input->post('txtRutEmpresa'));
             $this->db->set('NombreProveedor',$this->input->post('txtNombreEmpresa'));
             $this->db->set('RazonSocial',$this->input->post('txtRazonSocial'));
-            $this->db->set('Telefonocontacto1Proveedor',$this->input->post('txtTelefono'));
+            /*$this->db->set('Telefonocontacto1Proveedor',$this->input->post('txtTelefono'));
             $this->db->set('Correocontacto1Proveedor',$this->input->post('txtDireccion'));
             $this->db->set('IdComuna', $this->input->post('cboComuna'));
             //$this->db->set('IdTipoempresa',$this->input->post('cboTipoEmpresa'));
-            //$this->db->set('IdMaestra',$id_maestra);
+            //$this->db->set('IdMaestra',$id_maestra);*/
             $this->db->insert('Proveedores');
 /*
             $this->db->set('RutEmpresa',$this->input->post('txtRutEmpresa'));
@@ -34,10 +34,8 @@ class Empresas_model extends CI_Model{
 
 
             $data=array('NombreProveedor'=>$this->input->post('txtNombreEmpresa'),
-                            'RazonSocial'=>$this->input->post('txtRazonSocial'),
-                            'Telefonocontacto1Proveedor'=>$this->input->post('txtTelefono'),
-                            'Correocontacto1Proveedor'=>$this->input->post('txtDireccion'),
-                            'IdComuna'=>$this->input->post('cboComuna1')
+                            'RazonSocial'=>$this->input->post('txtRazonSocial')
+                            
             );
             $this->db->where('RutProveedor',$this->input->post('txtRut'));
             $this->db->update('Proveedores',$data);

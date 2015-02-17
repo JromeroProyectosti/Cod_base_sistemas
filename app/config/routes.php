@@ -48,6 +48,7 @@ $route['listado_empresas']="sec_empresa/listado_empresas";
 $route['addempresa']="sec_empresa/addempresa";
 $route['modificar_empresa/(:any)']="sec_empresa/modificar_empresa/$1";
 $route['detalle_empresa/(:any)']="sec_empresa/detalle_empresa/$1";
+$route['eliminsr_empresa/(:any)']="sec_empresa/eliminar_empresa/$1";
 $route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
 $route['crear_usuario']="sec_usuario/crear";
 $route['modificar_usuario']="sec_usuario/modificar";

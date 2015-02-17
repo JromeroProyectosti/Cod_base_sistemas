@@ -18,7 +18,7 @@ echo form_open("addempresa");
                     <th>Rut Empresa</th>
                     <th>Nombre Empresa</th>
                     <th>Razon Social</th>
-                    <th></th>
+                   
                     <th></th>
                     <th></th>
             </tr>
@@ -36,9 +36,9 @@ echo form_open("addempresa");
                     <td><?=$value['NombreProveedor']?></td>
 
                     <td><?=$value['RazonSocial']?></td>
-                    <td class="action"><a href="<?=base_url()?>detalle_empresa/<?=$value['RutProveedor']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"></span></button></a></td>
+                    
                     <td><a href="<?=base_url()?>modificar_empresa/<?=$value['RutProveedor']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" ></span></button></a></td>
-                    <td><a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
+                    <td><a href="<?=base_url()?>eliminar_usuario/<?=$value['RutProveedor']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                     </td>
             </tr>
             <?php endforeach ?>

@@ -39,52 +39,7 @@
         <input type='text' class="form-control" name='txtRazonSocial' value='<?=$detalle['RazonSocial']?>'/>
     </div>
 </div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="txtTelefono">Telefono</label>
-    <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtTelefono' value='<?=$detalle['Telefonocontacto1Proveedor']?>'/>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="txtDireccion">Direcci&oacute;n</label>
-    <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtDireccion' value='<?=$detalle['Correocontacto1Proveedor']?>'/> 
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="cboRegion1">Ciudad</label>
-    
-    <div class="controls col-sm-4">
-        <select id='cboRegion' name="cboRegion1" onchange='buscar_ciudad(this.value)' class="form-control">
-	<?php foreach($region as $row):?>
-	<option value='<?=$row['IdRegion']?>' 
-       <?php if($row['IdRegion']==$IdRegion) echo " Selected"; ?>
-        ><?=$row['NombreRegion']?></option>
-	<?php endforeach ?>
-		</select>*
-                
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="cboCiudad1">Comuna</label>
-    <div class="controls col-sm-4">
-        <select id='cboCiudad' name="cboCiudad1" onchange='buscar_comuna(this.value)' disables class="form-control">
-            <?php foreach($ciudad as $row):?>
-                <option value='<?=$row['IdCiudad']?>'><?=$row['NombreCiudad']?></option>
-	<?php endforeach ?>
-		</select>*
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="cboComuna1">Regi&oacute;n</label>
-    <div class="controls col-sm-4">
-        <select id='cboComuna' name="cboComuna1"  class="form-control">
-            <?php foreach($comuna as $row):?>
-                <option value='<?=$row['IdComuna']?>'><?=$row['NombreComuna']?></option>
-	<?php endforeach ?>
-		</select>*
-    </div>
-</div>
+
 			
     <p align="center"><button type='submit' value='Modificar' class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Modificar</button> 
         <button type="reset" class="btn btn-outline btn-primary btn-lg" data-oading-text="Cargando....">Limpiar</button></p>

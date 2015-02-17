@@ -53,13 +53,37 @@ class sec_usuario extends My_Controller{
                 $this->load->view("template/footer",$this->data);
         }else{
                 $this->usuarios_model->add_usuario();
-                redirect('listado_empresas');
+                redirect('listado_usuarios');
         }
    
     }
+    
     public function modificar(){
         
     }
     
+    
+    
+    public function valida_rut($rut){
+        echo $this->usuarios_model->get_usuario($rut);
+        if($this->usuarios_model->get_usuario($rut)!=FALSE){
+            
+            
+            $this->form_validation->set_message('valida_rut','El Rut ya existe en el sistema');
+            
+            return FALSE;
+        }
+        else {
+            $this->load->library("comun");
+            if($this->comun->valida_rut($rut)){
+                return TRUE;
+            }else{
+                $this->form_validation->set_message('valida_rut','El Rut Tiene un formato erroneo');
+            
+                return FALSE;
+           
+            }
+        }
+    }
     
 }

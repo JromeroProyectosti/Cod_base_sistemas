@@ -73,12 +73,28 @@ class Usuarios_model extends CI_Model{
         $this->db->set("CorreoUsuario",$this->input->post("txtCorreo"));
         $this->db->set("UsuarioUsuario",$this->input->post("txtUsuario"));
         $this->db->set("claveUsuario",md5($this->input->post("txtPassword")));
-        $this->db->set("FecharegistroUsuario", date());
+        $this->db->set("FecharegistroUsuario", date("Y-m-d"));
         $this->db->insert('Usuarios');
         }
         catch (Exception $e){
-            
+            return FASLSE;
         }
+        
+    }
+    public function get_usuario($rut){
+        $this->db->select("*");
+        $this->db->from("Usuarios u");
+        $this->db->where("IdEstadousuario","1");
+        $this->db->where("RutUsuario",$rut);
+        $result=$this->db->get();
+
+        if($result->num_rows()){
+            return $result->result_array();
+        }else{
+            return FALSE;
+        }
+        
+        
         
     }
 }
