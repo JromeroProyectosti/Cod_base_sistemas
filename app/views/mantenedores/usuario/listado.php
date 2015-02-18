@@ -22,8 +22,9 @@
                     <th>Usuario</th>
                     <th>Fecha Registro</th>
                     <th>Fecha ult. ingreso</th>
-                    <th></th>
-                    <th></th>
+                    <th>Permisos</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
             </tr>
             <?php
                 $i=0;
@@ -38,8 +39,10 @@
                     <td><?=$value['UsuarioUsuario']?></td>
                     <td><?=$value['FecharegistroUsuario']?></td>
                     <td><?=$value['FechaultimoingresoUsuario']?></td>
+                    <td><a href="<?=base_url()?>permiso_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-filter" ></span></button></a></td>
+                    
                    <td><a href="<?=base_url()?>modificar_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" ></span></button></a></td>
-                    <td><a href="<?=base_url()?>eliminar_empresa/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
+                    <td><a href="<?=base_url()?>eliminar_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                     </td>
             </tr>
             <?php endforeach ?>

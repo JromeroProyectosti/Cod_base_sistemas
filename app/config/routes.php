@@ -53,7 +53,7 @@ $route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
 $route['crear_usuario']="sec_usuario/crear";
 $route['modificar_usuario']="sec_usuario/modificar";
 $route['listado_usuarios']="sec_usuario/listar";
-
+$route['permiso_usuario/(:any)']="sec_usuario/permiso/$1";
 $route['listado_sucursal']="listado_sucursal";
 $route['comun/generaoptionciudad']="comun/generaoptionciudad";
 $route['comun/generaoptioncomuna']="comun/generaoptioncomuna";

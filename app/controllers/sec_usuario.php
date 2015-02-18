@@ -15,7 +15,7 @@ class sec_usuario extends My_Controller{
     //put your code here
     public function __construct(){
         parent::__construct();
-        
+        $this->data['titulo']="";
     }
     public function listar($filtro=""){
         $this->data['titulo']="Usuarios - Listado";
@@ -45,7 +45,7 @@ class sec_usuario extends My_Controller{
         
         //$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
         if($this->form_validation->run()===FALSE){
-                $this->data['titulo']="Empresa - Agregar";
+                $this->data['titulo']="Usuario - Agregar";
                 //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
                 
                 $this->load->view("template/header",$this->data);
@@ -59,10 +59,23 @@ class sec_usuario extends My_Controller{
     }
     
     public function modificar(){
-        
+       
     }
     
-    
+    public function permiso($rut){
+        
+        if($this->input->post('checkpermisos')){
+            $this->usuarios_model->del_permisos($rut);
+            $this->usuarios_model->set_permisos($rut); 
+        }
+        $this->data['titulo']="Usuario - Permisos";
+        $this->load->helper("permisos");
+        $detalle['permisos']=$this->usuarios_model->get_permisos($rut);
+        $detalle['rut']=$rut;
+        $this->load->view("template/header",$this->data);
+        $this->load->view("mantenedores/usuario/permisos",$detalle);
+        $this->load->view("template/footer",$this->data);
+    }
     
     public function valida_rut($rut){
         echo $this->usuarios_model->get_usuario($rut);

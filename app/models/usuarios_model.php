@@ -97,5 +97,74 @@ class Usuarios_model extends CI_Model{
         
         
     }
+    public function get_permisos($rut){
+        $this->db->select("p.idPermiso,p.NombrePermiso");
+        $this->db->from("Permisos p");
+        $this->db->join("TipousuarioPermisos tup","tup.idPermiso=p.idPermiso");
+        $this->db->join("Tipousuario tu","tu.idTipousuario=tup.idTipousuario");
+        $this->db->join("Usuarios u", "tu.idTipousuario=u.idTipousuario");
+        $this->db->where("u.RutUsuario",$rut);
+        $result=$this->db->get();
+        if($result->num_rows()){
+            return $result->result_array();
+        }else{
+            return FALSE;
+        }
+        
+    }
+    public function get_acciones($id_permiso, $rut=''){
+        $this->db->select("pa.idPermisoaccion,pa.NombrePermisoaccion");
+        $this->db->from("permisosacciones pa");
+       
+        $this->db->where("pa.idPermiso",$id_permiso); 
+        
+        if($rut!=''){
+            $this->db->join("usuarios_permisosacciones upa","upa.idPermisoaccion=pa.idPermisoaccion");
+            $this->db->join("usuarios u","u.idUsuario=upa.idUsuario");
+            $this->db->where("u.RutUsuario",$rut);
+        }
+        $result=$this->db->get();
+        $resultado_permisos=array();
+        if($result->num_rows()){
+            if($rut!=''){
+                
+        
+                foreach($result->result() as $item){
+                    $resultado_permisos[]=$item->NombrePermisoaccion;
+                }
+                return $resultado_permisos;
+            }else{
+                return $result->result_array();
+            }
+        }else{
+            return FALSE;
+        } 
+    }
+    public function del_permisos($rut){
+        
+        
+        $array_usuario=$this->get_usuario($rut);
+    
+        $this->db->where("idUsuario",$array_usuario[0]['idUsuario']);
+        $this->db->delete('usuarios_permisosacciones');
+    }
+    public function set_permisos($rut){
+        $array_permisos=$this->input->post('checkpermisos');
+        print_r($array_permisos);
+        $array_usuario=$this->get_usuario($rut);
+        
+        if(is_array($array_permisos)){
+            foreach($array_permisos as $row){
+                $this->db->set("idPermisoaccion",$row);
+                $this->db->set("idUsuario",$array_usuario[0]['idUsuario']);
+                $this->db->insert("usuarios_permisosacciones");
+            }
+            
+            
+            
+        }
+    }
+    
+    
 }
 

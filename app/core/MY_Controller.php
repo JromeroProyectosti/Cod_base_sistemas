@@ -50,7 +50,7 @@ class My_Controller extends CI_Controller
         {
             
             if(is_array($this->secure_actions)){
-                echo array_key_exists($action_name,$this->secure_actions);
+                //echo array_key_exists($action_name,$this->secure_actions);
                 if(in_array($action_name,$this->secure_actions))
                 {
                     return TRUE;
