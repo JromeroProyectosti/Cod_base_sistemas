@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 16-02-2015 a las 16:14:10
+-- Tiempo de generación: 18-02-2015 a las 07:40:59
 -- Versión del servidor: 5.0.51
 -- Versión de PHP: 5.2.6
 
@@ -607,7 +607,7 @@ CREATE TABLE `permisos` (
   `NombrePermiso` varchar(45) default NULL,
   `ConstructorPermiso` varchar(45) default NULL COMMENT 'El metodo del permiso nos permite utilizar dinamicamente los permisos en las clases....cada clase debe tener una implementacion extendida a MY_Controller que genera las reglas.',
   PRIMARY KEY  (`idPermiso`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `permisos`
@@ -629,7 +629,7 @@ CREATE TABLE `permisosacciones` (
   `MetodoPermisoaccion` varchar(45) default NULL COMMENT 'Hace referencia a las acciones dentro de una clase.\n',
   PRIMARY KEY  (`idPermisoaccion`),
   KEY `fk_Permisosacciones_Permisos1_idx` (`idPermiso`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- 
 -- Volcar la base de datos para la tabla `permisosacciones`
@@ -642,6 +642,7 @@ INSERT INTO `permisosacciones` VALUES (4, 1, 'Detalle Proveedor', 'detalle_empre
 INSERT INTO `permisosacciones` VALUES (5, 2, 'Ver Usuarios', 'listar');
 INSERT INTO `permisosacciones` VALUES (6, 2, 'Crear Usuario', 'crear');
 INSERT INTO `permisosacciones` VALUES (7, 2, 'Modificar Usuario', 'modificar');
+INSERT INTO `permisosacciones` VALUES (8, 2, 'Generar Permisos', 'permiso');
 
 -- --------------------------------------------------------
 
@@ -773,7 +774,7 @@ CREATE TABLE `tipousuario` (
   `idTipousuario` int(11) NOT NULL auto_increment,
   `NombreTipousuario` varchar(200) NOT NULL,
   PRIMARY KEY  (`idTipousuario`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `tipousuario`
@@ -781,6 +782,27 @@ CREATE TABLE `tipousuario` (
 
 INSERT INTO `tipousuario` VALUES (1, 'Administrador');
 INSERT INTO `tipousuario` VALUES (2, 'Logistica');
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `tipousuariopermisos`
+-- 
+
+CREATE TABLE `tipousuariopermisos` (
+  `idTipousuario` int(11) NOT NULL,
+  `idPermiso` int(11) NOT NULL,
+  KEY `idTipousuario` (`idTipousuario`,`idPermiso`),
+  KEY `idPermiso` (`idPermiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `tipousuariopermisos`
+-- 
+
+INSERT INTO `tipousuariopermisos` VALUES (1, 1);
+INSERT INTO `tipousuariopermisos` VALUES (1, 2);
+INSERT INTO `tipousuariopermisos` VALUES (2, 1);
 
 -- --------------------------------------------------------
 
@@ -830,13 +852,16 @@ CREATE TABLE `usuarios_permisosacciones` (
 -- Volcar la base de datos para la tabla `usuarios_permisosacciones`
 -- 
 
-INSERT INTO `usuarios_permisosacciones` VALUES (1, 1);
-INSERT INTO `usuarios_permisosacciones` VALUES (2, 1);
-INSERT INTO `usuarios_permisosacciones` VALUES (3, 1);
-INSERT INTO `usuarios_permisosacciones` VALUES (4, 1);
-INSERT INTO `usuarios_permisosacciones` VALUES (5, 1);
-INSERT INTO `usuarios_permisosacciones` VALUES (6, 2);
+INSERT INTO `usuarios_permisosacciones` VALUES (2, 2);
 INSERT INTO `usuarios_permisosacciones` VALUES (7, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (6, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (5, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (4, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (1, 2);
+INSERT INTO `usuarios_permisosacciones` VALUES (3, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (2, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (1, 1);
+INSERT INTO `usuarios_permisosacciones` VALUES (8, 1);
 
 -- --------------------------------------------------------
 
@@ -886,3 +911,14 @@ CREATE TABLE `ventas` (
 -- Volcar la base de datos para la tabla `ventas`
 -- 
 
+
+-- 
+-- Filtros para las tablas descargadas (dump)
+-- 
+
+-- 
+-- Filtros para la tabla `tipousuariopermisos`
+-- 
+ALTER TABLE `tipousuariopermisos`
+  ADD CONSTRAINT `tipousuariopermisos_ibfk_1` FOREIGN KEY (`idTipousuario`) REFERENCES `tipousuario` (`idTipousuario`),
+  ADD CONSTRAINT `tipousuariopermisos_ibfk_2` FOREIGN KEY (`idPermiso`) REFERENCES `permisos` (`idPermiso`);
