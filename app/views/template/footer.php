@@ -19,5 +19,14 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url();?>bootstrap/dist/js/sb-admin-2.js"></script>
     <script src="<?=base_url();?>js/ajax.js" type="text/javascript"></script>
+    <script src="<?=base_url()?>bootstrap/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="<?=base_url()?>bootstrap/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+    <?php
+    
+    if(isset($scripts)){
+     echo $scripts;
+    }
+    ?>
 </body>
 </html>

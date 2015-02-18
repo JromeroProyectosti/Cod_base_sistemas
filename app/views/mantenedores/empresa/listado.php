@@ -11,14 +11,13 @@ echo form_open("addempresa");
 <input type="submit" value="Nueva Empresa" class="btn btn-primary">
 </form>
 <div class="table-responsive">
-    <table class="table table-striped  table-bordered table-hover">
+    <table class="table table-striped  table-bordered table-hover" id="table-proveedor">
         <thead>
             <tr >
                 <th></th>
                     <th>Rut Empresa</th>
                     <th>Nombre Empresa</th>
                     <th>Razon Social</th>
-                   
                     <th></th>
                     <th></th>
             </tr>
@@ -45,27 +44,3 @@ echo form_open("addempresa");
         </tbody>
     </table>
 </div>
-
-<!--
-<table>
-	<tr>
-		<td>Rut Empresa</td>
-		<td>Nombre Empresa</td>
-		<td>Razon Social</td>
-		<td>Telefono</td>
-		<td>Direccion</td>
-		<td></td>
-	</tr>
-		<tr>
-		<td><?=$value['RutProveedor']?></td>
-		<td><?=$value['NombreProveedor']?></td>
-		<td><?=$value['RazonSocial']?></td>
-		<td><?=$value['Telefonocontacto1Proveedor']?></td>
-		<td><?=$value['Direccioncontacto1Proveedor']?></td>
-		<td class="action"><a href="<?=base_url()?>sucursal/listado_sucursal/<?=$value['RutProveedor']?>" class="view">detalle</a>
-		<a href="<?=base_url()?>empresa/modificar_empresa/<?=$value['RutProveedor']?>" class="edit">Modificar</a>
-		<a href="<?=base_url()?>empresa/eliminar_empresa/<?=$value['RutProveedor']?>" class="delete">Eliminar</a>
-		</td>
-	</tr>
-	
-</table>-->

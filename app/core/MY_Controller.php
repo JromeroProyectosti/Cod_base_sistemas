@@ -60,7 +60,7 @@ class My_Controller extends CI_Controller
                     return FALSE;
                 }
             }else{
-                echo "No es un Array";
+               return false;
             }
         }
     }

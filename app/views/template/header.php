@@ -26,6 +26,12 @@
 
     <!-- Custom Fonts -->
     <link href="<?=base_url();?>bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- DataTables CSS -->
+    <link href="<?=base_url();?>bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="<?=base_url();?>bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
 </head>
 <body>
@@ -245,7 +251,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?=base_url()?>login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -272,30 +278,33 @@
                             <a href="<?=base_url();?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-gears"></i> Mantenedores<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-wrench"></i> Mantenedores<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?=base_url();?>listado_empresas">Proveedores</a>
+                                    <a href="<?=base_url();?>listado_empresas" ><i class="fa fa-gears"></i> Proveedores</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url();?>listado_usuarios">Usuarios</a>
+                                    <a href="<?=base_url();?>listado_usuarios"><i class="fa fa-users"></i> Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url();?>listado_usuarios"><i class="fa fa-shopping-cart"></i> Productos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                       
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                       <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-gears"></i> Solicitudes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Blank Page</a>
+                                    <a href="<?=base_url();?>listado_empresas">Nuevas solicitudes</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url();?>login">Login Page</a>
+                                    <a href="<?=base_url();?>listado_usuarios">Vendedores</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

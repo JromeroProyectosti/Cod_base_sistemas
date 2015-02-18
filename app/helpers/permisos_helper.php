@@ -29,8 +29,10 @@ if(!function_exists('get_acciones')){
                     <div class='checkbox'>
                 <label>
                     <input type='checkbox' value='".$row['idPermisoaccion']."' name='checkpermisos[]' ";
-            if(in_array($row['NombrePermisoaccion'],$array_permisos, TRUE)){
-                    $check_box.=" checked";
+            if($array_permisos!=false){
+                if(in_array($row['NombrePermisoaccion'],$array_permisos, TRUE)){
+                        $check_box.=" checked";
+                }
             }
             
             $check_box.= ">".$row['NombrePermisoaccion'];

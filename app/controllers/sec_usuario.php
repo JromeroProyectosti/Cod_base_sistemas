@@ -14,11 +14,18 @@
 class sec_usuario extends My_Controller{
     //put your code here
     public function __construct(){
-        parent::__construct();
+        parent::__construct(TRUE);
         $this->data['titulo']="";
     }
     public function listar($filtro=""){
         $this->data['titulo']="Usuarios - Listado";
+        $this->data['scripts']="<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+</script>";
         $detalle['listado']=$this->usuarios_model->listado_usuarios($this->session->userdata('idMaestra'),$filtro);
         $this->load->view("template/header",$this->data);
         $this->load->view("mantenedores/usuario/listado",$detalle);
@@ -58,8 +65,32 @@ class sec_usuario extends My_Controller{
    
     }
     
-    public function modificar(){
+    public function modificar($rut){
+       $detalle['estado']=$this->common_model->get_estado_usuario();
+        $detalle['tipo']=$this->common_model->get_tipo_usuario();
+        $this->load->library('form_validation');
+        //$this->form_validation->set_rules('txtRutUsuario','Rut','required|callback_valida_rut');
+        $this->form_validation->set_rules('txtNombreUsuario','Nombre','required');
+        $this->form_validation->set_rules('txtCorreo','Correo','required|valid_email');
+        $this->form_validation->set_rules('txtUsuario','Usuario','required|max_length[250]');
+
+        
+        //$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
+        if($this->form_validation->run()===FALSE){
+                               
+        }else{
+            $this->usuarios_model->mod_usuario($rut);
+            redirect('listado_usuarios');
+        } 
+        $detalle['estado']=$this->common_model->get_estado_usuario();
+        $detalle['tipo']=$this->common_model->get_tipo_usuario();
+        
+        $detalle['usuario']=$this->usuarios_model->get_usuario($rut);
        
+        $this->data['titulo']="Usuario - Modificar";
+        $this->load->view("template/header",$this->data);
+        $this->load->view("mantenedores/usuario/modificar",$detalle);
+        $this->load->view("template/footer",$this->data);
     }
     
     public function permiso($rut){
@@ -78,11 +109,11 @@ class sec_usuario extends My_Controller{
     }
     
     public function valida_rut($rut){
-        echo $this->usuarios_model->get_usuario($rut);
+        //echo $this->usuarios_model->get_usuario($rut);
         if($this->usuarios_model->get_usuario($rut)!=FALSE){
             
             
-            $this->form_validation->set_message('valida_rut','El Rut ya existe en el sistema');
+            $this->form_validation->set_message('valida_rut','El Rut ya existe en el sistema, verifica si esta Deshabilitado');
             
             return FALSE;
         }

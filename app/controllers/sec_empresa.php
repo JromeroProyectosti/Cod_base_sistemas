@@ -79,6 +79,13 @@ class Sec_empresa extends My_Controller {
     }
     public function listado_empresas(){
         $this->data['titulo']="Empresas - Listado";
+        $this->data['scripts']="<script>
+    $(document).ready(function() {
+        $('#table-proveedor').DataTable({
+                responsive: true
+        });
+    });
+</script>";
         $detalle['listado']=$this->empresas_model->listado_empresas($this->session->userdata('idMaestra'));
         $this->load->view("template/header",$this->data);
         $this->load->view("mantenedores/empresa/listado",$detalle);

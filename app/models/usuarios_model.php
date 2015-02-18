@@ -16,6 +16,10 @@ class Usuarios_model extends CI_Model{
 
 
         if($result->num_rows()>0){
+                $usuario=$result->row_array();
+                $this->db->set("FechaultimoingresoUsuario",date("Y-m-d h:m:s"));
+                $this->db->where("IdUsuario",$usuario['IdUsuario']);
+                $this->db->update("Usuarios");
                 return $result->result_array();
         }else{
                 return false;
@@ -81,15 +85,35 @@ class Usuarios_model extends CI_Model{
         }
         
     }
+    public function mod_usuario($rut){
+        try{
+           
+        $this->db->set("idTipousuario",$this->input->post("cboTipo1"));
+        $this->db->set("idEstadousuario",$this->input->post("cboEstado1"));
+        $this->db->set("NombreUsuario",$this->input->post("txtNombreUsuario"));
+        $this->db->set("ApellidoUsuario",$this->input->post("txtApellidoUsuario"));
+        $this->db->set("CorreoUsuario",$this->input->post("txtCorreo"));
+        $this->db->set("UsuarioUsuario",$this->input->post("txtUsuario"));
+        if($this->input->post("txtPassword")){
+            $this->db->set("claveUsuario",md5($this->input->post("txtPassword")));
+        }
+        $this->db->where("RutUsuario",$rut);
+        $this->db->update('Usuarios');
+        }
+        catch (Exception $e){
+            return FASLSE;
+        }
+        
+    }
     public function get_usuario($rut){
         $this->db->select("*");
         $this->db->from("Usuarios u");
-        $this->db->where("IdEstadousuario","1");
+        //$this->db->where("IdEstadousuario","1");
         $this->db->where("RutUsuario",$rut);
         $result=$this->db->get();
 
         if($result->num_rows()){
-            return $result->result_array();
+            return $result->row_array();
         }else{
             return FALSE;
         }
@@ -145,18 +169,18 @@ class Usuarios_model extends CI_Model{
         
         $array_usuario=$this->get_usuario($rut);
     
-        $this->db->where("idUsuario",$array_usuario[0]['idUsuario']);
+        $this->db->where("idUsuario",$array_usuario['idUsuario']);
         $this->db->delete('usuarios_permisosacciones');
     }
     public function set_permisos($rut){
         $array_permisos=$this->input->post('checkpermisos');
-        print_r($array_permisos);
+
         $array_usuario=$this->get_usuario($rut);
         
         if(is_array($array_permisos)){
             foreach($array_permisos as $row){
                 $this->db->set("idPermisoaccion",$row);
-                $this->db->set("idUsuario",$array_usuario[0]['idUsuario']);
+                $this->db->set("idUsuario",$array_usuario['idUsuario']);
                 $this->db->insert("usuarios_permisosacciones");
             }
             

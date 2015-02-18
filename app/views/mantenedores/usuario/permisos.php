@@ -34,7 +34,7 @@ Permisos
     
     <?php    endforeach ?>
     <div class="col-sm-12">
-    <button type='submit' value='Modificar' class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Crear</button> 
+    <button type='submit' value='Modificar' class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Guardar Cambios</button> 
     </div>
 </form>
     
