@@ -55,6 +55,11 @@ $route['modificar_usuario/(:any)']="sec_usuario/modificar/$1";
 $route['listado_usuarios']="sec_usuario/listar";
 $route['permiso_usuario/(:any)']="sec_usuario/permiso/$1";
 $route['listado_sucursal']="listado_sucursal";
+$route['listado_productos']="sec_productos/listar";
+$route['crear_producto']="sec_productos/crear";
+$route['modificar_producto/(:any)']="sec_productos/modificar/$1";
+$route['eliminar_producto/(:any)']="sec_productos/eliminar/$1";
+
 $route['comun/generaoptionciudad']="comun/generaoptionciudad";
 $route['comun/generaoptioncomuna']="comun/generaoptioncomuna";
 //$route['404_override'] = '';

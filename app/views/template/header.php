@@ -287,7 +287,7 @@
                                     <a href="<?=base_url();?>listado_usuarios"><i class="fa fa-users"></i> Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url();?>listado_usuarios"><i class="fa fa-shopping-cart"></i> Productos</a>
+                                    <a href="<?=base_url();?>listado_productos"><i class="fa fa-shopping-cart"></i> Productos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
