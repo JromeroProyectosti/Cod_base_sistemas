@@ -67,6 +67,62 @@
         ?>
     </div>
 </div>
-    
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="txtDescripcion">Descripci&oacute;n</label>
+    <div class="controls col-sm-4">
+        <input type='text' class="form-control" name='txtDescripcion' value='<?=set_value("txtDescripcion")?>' />
+    </div>
+    <label class="control-label col-sm-1">*</label>
+    <div class="controls col-sm-5">
+        <?php 
+        if(form_error('txtDescripcion')){
+            ?>
+            <div class='alert alert-warning alert-dismissable' id='err_rut' role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?=form_error('txtDescripcion')?> 
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2" for="txtCosto">Costo</label>
+    <div class="controls col-sm-4">
+        <input type='text' class="form-control" name='txtCosto' value='<?=set_value("txtCosto")?>' />
+    </div>
+    <label class="control-label col-sm-1">*</label>
+    <div class="controls col-sm-5">
+        <?php 
+        if(form_error('txtCosto')){
+            ?>
+            <div class='alert alert-warning alert-dismissable' id='err_rut' role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?=form_error('txtCosto')?> 
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2" for="txtVenta">Precio Catalogo</label>
+    <div class="controls col-sm-4">
+        <input type='text' class="form-control" name='txtVenta' value='<?=set_value("txtVenta")?>' />
+    </div>
+    <label class="control-label col-sm-1">*</label>
+    <div class="controls col-sm-5">
+        <?php 
+        if(form_error('txtVenta')){
+            ?>
+            <div class='alert alert-warning alert-dismissable' id='err_rut' role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?=form_error('txtCosto')?> 
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
     
 </div>

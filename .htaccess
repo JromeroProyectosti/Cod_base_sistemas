@@ -1,4 +1,4 @@
 RewriteEngine on
 
 RewriteCond $1 !^(index.php|css|js|img|bootstrap|robots.txt)
-RewriteRule ^(.*)$ /Cod_base_sistemas/index.php/$1 [L]
+RewriteRule ^(.*)$ /nutramarket/index.php/$1 [L]

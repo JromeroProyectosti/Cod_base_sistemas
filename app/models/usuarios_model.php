@@ -8,18 +8,19 @@ class Usuarios_model extends CI_Model{
 
     public function very_user($usuario, $password){
         //$result=$this->db->get_where('usuario', array('Usuario'=>$usuario,'Clave'=>$password));
-        $result=$this->db->query("select u.IdUsuario, u.NombreUsuario, u.ApellidoUsuario, u.IdTipousuario
-        from ".DBEXT."Usuarios u
-        where	u.UsuarioUsuario='$usuario' and 
-                u.ClaveUsuario = md5('$password') and
-                u.IdEstadousuario=1 ");
-
+        
+        $this->db->select("u.IdUsuario, u.NombreUsuario, u.ApellidoUsuario, u.IdTipousuario");
+        $this->db->from("usuarios u");
+        $this->db->where("u.UsuarioUsuario",$usuario);
+        $this->db->where("u.ClaveUsuario",md5($password));
+        $this->db->where("u.IdEstadousuario",1);
+        $result=$this->db->get();
 
         if($result->num_rows()>0){
                 $usuario=$result->row_array();
                 $this->db->set("FechaultimoingresoUsuario",date("Y-m-d h:m:s"));
                 $this->db->where("IdUsuario",$usuario['IdUsuario']);
-                $this->db->update("Usuarios");
+                $this->db->update("usuarios");
                 return $result->result_array();
         }else{
                 return false;
@@ -44,9 +45,9 @@ class Usuarios_model extends CI_Model{
     public function listado_usuarios($id_maestra,$filtro=""){
 
         $this->db->select('*');
-        $this->db->from('Usuarios u');
-        $this->db->join('Tipousuario tu','tu.IdTipousuario=u.idTipousuario');
-        $this->db->join('Estadousuario eu','eu.IdEstadousuario=u.idEstadousuario');
+        $this->db->from('usuarios u');
+        $this->db->join('tipousuario tu','tu.IdTipousuario=u.idTipousuario');
+        $this->db->join('estadousuario eu','eu.IdEstadousuario=u.idEstadousuario');
         //$this->db->join('tipoempresa','tipoempresa.IdTipoempresa=empresa.IdTipoempresa');
         //$this->db->where('IdMaestra',$id_maestra);
         if($filtro!=""){
@@ -78,7 +79,7 @@ class Usuarios_model extends CI_Model{
         $this->db->set("UsuarioUsuario",$this->input->post("txtUsuario"));
         $this->db->set("claveUsuario",md5($this->input->post("txtPassword")));
         $this->db->set("FecharegistroUsuario", date("Y-m-d"));
-        $this->db->insert('Usuarios');
+        $this->db->insert('usuarios');
         }
         catch (Exception $e){
             return FASLSE;
@@ -98,7 +99,7 @@ class Usuarios_model extends CI_Model{
             $this->db->set("claveUsuario",md5($this->input->post("txtPassword")));
         }
         $this->db->where("RutUsuario",$rut);
-        $this->db->update('Usuarios');
+        $this->db->update('usuarios');
         }
         catch (Exception $e){
             return FASLSE;
@@ -107,7 +108,7 @@ class Usuarios_model extends CI_Model{
     }
     public function get_usuario($rut){
         $this->db->select("*");
-        $this->db->from("Usuarios u");
+        $this->db->from("usuarios u");
         //$this->db->where("IdEstadousuario","1");
         $this->db->where("RutUsuario",$rut);
         $result=$this->db->get();
@@ -123,10 +124,10 @@ class Usuarios_model extends CI_Model{
     }
     public function get_permisos($rut){
         $this->db->select("p.idPermiso,p.NombrePermiso");
-        $this->db->from("Permisos p");
-        $this->db->join("TipousuarioPermisos tup","tup.idPermiso=p.idPermiso");
-        $this->db->join("Tipousuario tu","tu.idTipousuario=tup.idTipousuario");
-        $this->db->join("Usuarios u", "tu.idTipousuario=u.idTipousuario");
+        $this->db->from("permisos p");
+        $this->db->join("tipousuariopermisos tup","tup.idPermiso=p.idPermiso");
+        $this->db->join("tipousuario tu","tu.idTipousuario=tup.idTipousuario");
+        $this->db->join("usuarios u", "tu.idTipousuario=u.idTipousuario");
         $this->db->where("u.RutUsuario",$rut);
         $result=$this->db->get();
         if($result->num_rows()){

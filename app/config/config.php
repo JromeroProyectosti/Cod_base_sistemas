@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Cod_base_sistemas';
+//$config['base_url']	= 'http://localhost/Cod_base_sistemas';
+$config['base_url']	= 'http://www.proyectosti.cl/nutramarket';
 
 /*
 |--------------------------------------------------------------------------

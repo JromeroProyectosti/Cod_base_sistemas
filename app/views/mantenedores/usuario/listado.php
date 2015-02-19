@@ -34,6 +34,7 @@
                 <tbody>
                     <?php
                         $i=0;
+                        if($listado!=FALSE){
                         foreach ($listado as $value): 
 
                         ?>
@@ -51,7 +52,14 @@
                             <td><a href="<?=base_url()?>eliminar_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                             </td>
                     </tr>
-                    <?php endforeach ?>
+                    <?php endforeach; 
+                        }else{
+                            ?>
+                    
+                    <tr><td colspan="9">Sin Datos</td></tr>
+                    <?php
+                        }
+?>
                 </tbody>
             </table>
         </div>
