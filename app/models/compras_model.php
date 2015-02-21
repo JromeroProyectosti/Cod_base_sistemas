@@ -11,36 +11,33 @@
  *
  * @author John
  */
-class productos_model extends CI_Model{
+class compras_model extends CI_Model{
     //put your code here
     public function __construct() {
         parent::__construct();
     }
-    
-    /**
-    * Devuelve listado completo de prodsuctos
-    *
-    * @access	publico
-    * @param    String str_productos es un texto que contiene los campos que se quiere que se devuelva separados por coma(,).
-    * @param    int $id_producto es el id principal del producto 
-    * @return	un row_array o un result_array dependiendo del @param
-    */
-    public function get_listado_productos($str_productos="*",$id_producto=NULL,$filtro=NULL){
-        $this->db->select($str_productos);
-        $this->db->from("Productos p");
+    public function get_listado_compra($str_compra="*",$id_compra=null,$filtro=false){
+        $this->db->select($str_compra);
+        $this->db->from("compras c");
+        $this->db->join("estadocompra e","e.idEstadoCompra=c.idEstadoCompra");
+        $this->db->join("usuarios u","u.idUsuario=c.idUsuario");
+        $this->db->join("proveedores p","p.idProveedor=c.idProveedor");
+        
+       
         if($filtro){
             
             $this->db->where($filtro);
         }
-        if($id_producto==NULL){
+        if($id_compra==NULL){
             $result=$this->db->get();
             if($result->num_rows()){
+                
                 return $result->result_array();
             
             }
-            
+             
         }else{
-            $this->db->where("idproductos",$id_producto);
+            $this->db->where("idCompra",$id_compra);
             $result=$this->db->get();
             if($result->num_rows()){
                 return $result->row_array();
@@ -48,6 +45,32 @@ class productos_model extends CI_Model{
         }
         
         return false;
+    }
+    public function get_listado_productos($idCompra,$tablas="*",$id_producto=null){
+        $this->db->select($tablas);
+        $this->db->from("detallecompra d");
+        $this->db->join("productos p","p.idproductos=d.idproductos");
+        $this->db->where("d.idCompra",$idCompra);
+        if($id_producto!=null){
+            $this->db->where("idproducto",$id_producto);
+            $result=$this->db->get();
+            if($result->num_rows()){
+                return $result->row_array();
+            }else{
+                return false;
+            }
+           
+        }else{
+           $result=$this->db->get();
+           if($result->num_rows()){
+               return $result->result_array();
+           }else{
+               
+               return false;
+           }
+        }
+        
+        
     }
     /**
     * Creacion de productos
@@ -63,8 +86,8 @@ class productos_model extends CI_Model{
             
         }else{
 
-            $this->db->insert("Productos",$array_campos);
-            return TRUE;
+            $this->db->insert("compras",$array_campos);
+            return $this->db->insert_id();
         }
     }
      /**
@@ -92,4 +115,5 @@ class productos_model extends CI_Model{
     
         
     }
+    
 }

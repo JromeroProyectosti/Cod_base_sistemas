@@ -9,7 +9,7 @@
     echo form_open("crear_producto",array('class'=>'form-horizontal'));
 
     ?>
-    <input type="submit" value="Nuevo Usuario" class="btn btn-primary">
+    <input type="submit" value="Nuevo Producto" class="btn btn-primary">
     </form>
     <p></p>
     
@@ -20,7 +20,7 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Cod. Cat.</th>
-                    <th>Nombre</th>
+                    <th>Descripcion</th>
                     <th>Precio Compra</th>
                     <th>Precio Catalogo</th>
                     <th>Precio Vendedor</th>
@@ -41,13 +41,13 @@
                             <td><?=$value['CodigoProducto']?></td>
                             <td><?=$value['CodigocatalogoProducto']?></td>
                             <td><?=$value['DescripcionProducto']?></td>
-                            <td><?=$value['PreciocompraProdcuto']?></td>
+                            <td><?=$value['PreciocompraProducto']?></td>
                             <td><?=$value['PrecioventaProducto']?></td>
                             <td><?=$value['ApagarProducto']?></td>
-                            <td><a href="<?=base_url()?>detalle_producto/<?=$value['idProducto']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-filter" ></span></button></a></td>
+                            <td><a href="<?=base_url()?>detalle_producto/<?=$value['idproductos']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open" ></span></button></a></td>
 
-                           <td><a href="<?=base_url()?>modificar_producto/<?=$value['idProducto']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" ></span></button></a></td>
-                            <td><a href="<?=base_url()?>eliminar_producto/<?=$value['idProducto']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
+                           <td><a href="<?=base_url()?>modificar_producto/<?=$value['idproductos']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" ></span></button></a></td>
+                            <td><a href="<?=base_url()?>eliminar_producto/<?=$value['idproductos']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
                            
                     </tr>
                     <?php endforeach;

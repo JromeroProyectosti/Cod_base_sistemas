@@ -9,11 +9,11 @@
                           Nuevo Productoff
     </div>
     
-    <?php echo form_open('crear_producto',array('class'=>'form-horizontal'));?>
+    <?php echo form_open('modificar_producto/'.$id_producto,array('class'=>'form-horizontal',"id"=>"form_envio"));?>
 <div class="form-group">
     <label class="control-label col-sm-2" for="txtCodigo">C&oacute;digo</label>
     <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtCodigo' value='<?=set_value("txtCodigo")?>' />
+        <input type='text' class="form-control" name='txtCodigo' value='<?=$producto['CodigoProducto']?>' />
     </div>
     <label class="control-label col-sm-1">*</label>
     <div class="controls col-sm-5">
@@ -32,7 +32,7 @@
 <div class="form-group">
     <label class="control-label col-sm-2" for="txtCodigoCatalogo">C&oacute;digo Catalogo</label>
     <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtCodigoCatalogo' value='<?=set_value("txtCodigoCatalogo")?>' />
+        <input type='text' class="form-control" name='txtCodigoCatalogo' value='<?=$producto['CodigocatalogoProducto']?>' />
     </div>
     <label class="control-label col-sm-1">*</label>
     <div class="controls col-sm-5">
@@ -51,7 +51,7 @@
     <div class="form-group">
     <label class="control-label col-sm-2" for="txtDescripcion">Descripci&oacute;n</label>
     <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtDescripcion' value='<?=set_value("txtDescripcion")?>' />
+        <input type='text' class="form-control" name='txtDescripcion' id="txtDescripcion" value='<?=$producto['DescripcionProducto']?>' />
     </div>
     <label class="control-label col-sm-1">*</label>
     <div class="controls col-sm-5">
@@ -70,7 +70,7 @@
 <div class="form-group">
     <label class="control-label col-sm-2" for="txtCosto">Costo</label>
     <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtCosto' value='<?=set_value("txtCosto")?>' />
+        <input type='text' class="form-control" name='txtCosto' value='<?=$producto['PreciocompraProducto']?>' />
     </div>
     <label class="control-label col-sm-1">*</label>
     <div class="controls col-sm-5">
@@ -89,7 +89,7 @@
 <div class="form-group">
     <label class="control-label col-sm-2" for="txtPrecioCatalogo">Precio Catalogo</label>
     <div class="controls col-sm-4">
-        <input type='text' class="form-control" name='txtPrecioCatalogo' value='<?=set_value("txtPrecioCatalogo")?>' />
+        <input type='text' class="form-control" name='txtPrecioCatalogo' value='<?=$producto['PrecioventaProducto']?>' />
     </div>
     <label class="control-label col-sm-1">*</label>
     <div class="controls col-sm-5">
@@ -128,9 +128,20 @@
     </div>
     
 </div>-->
-<p align="center"><button type='submit' value='Modificar' class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Crear</button> 
-        <button type="reset" class="btn btn-outline btn-primary btn-lg" data-oading-text="Cargando....">Limpiar</button></p>
+<p align="center"><button type='submit' value='Modificar' class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Modificar</button> 
+    <button type='button' value='Duplicar' onclick="javascript:Duplicar()" class="btn btn-outline btn-primary btn-lg" data-loading-text="Loading...">Duplicar</button>
+    <button type="button" onclick="javascript:window.location.href='<?=base_url()?>listado_productos'" class="btn btn-outline btn-primary btn-lg" data-oading-text="Cargando....">Cancelar</button>
+      </p>
 	
 </form>
 
 </div>
+
+<script>
+    function Duplicar(){
+        document.getElementById('form_envio').action="<?=base_url()?>crear_producto";
+        document.getElementById('txtDescripcion').value+="(Copia)";
+        document.getElementById('form_envio').submit();
+        
+    }
+ </script>

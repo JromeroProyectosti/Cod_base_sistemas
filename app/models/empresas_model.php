@@ -73,7 +73,7 @@ class Empresas_model extends CI_Model{
             }
     }
     public function get_empresa($rutempresa){
-            $this->db->select('NombreProveedor, RutProveedor, RazonSocial, Contacto1Proveedor, Telefonocontacto1Proveedor, Correocontacto1Proveedor,Contacto2Proveedor, Telefonocontacto2Proveedor, Correocontacto2Proveedor, IdComuna');
+            $this->db->select('idProveedor,NombreProveedor, RutProveedor, RazonSocial, Contacto1Proveedor, Telefonocontacto1Proveedor, Correocontacto1Proveedor,Contacto2Proveedor, Telefonocontacto2Proveedor, Correocontacto2Proveedor, IdComuna');
             $this->db->from('Proveedores');
             //$this->db->join('tipoempresa','tipoempresa.IdTipoempresa=empresa.IdTipoempresa');
             $this->db->where('RutProveedor',$rutempresa);

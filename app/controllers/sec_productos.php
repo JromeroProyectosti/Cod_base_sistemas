@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,7 @@ class sec_productos extends My_Controller{
     //put your code here
 
     public function __construct() {
-        parent::__construct();
+        parent::__construct(TRUE);
         $this->data['titulo']="";
         
     }
@@ -30,20 +31,21 @@ class sec_productos extends My_Controller{
         });
     });
 </script>";
-        $detalle['listado']=$this->productos_model->get_listado_productos();
+        $detalle['listado']=$this->productos_model->get_listado_productos("*",NULL,array("EstadoProducto"=>1));
         $this->load->view("template/header",$this->data);
         $this->load->view("mantenedores/productos/listado",$detalle);
         $this->load->view("template/footer",$this->data);
     }
     public function crear(){
-        $detalle['estado']=$this->common_model->get_estado_usuario();
-        $detalle['tipo']=$this->common_model->get_tipo_usuario();
+
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('txtRutUsuario','Rut','required|callback_valida_rut');
-        $this->form_validation->set_rules('txtNombreUsuario','Nombre','required');
-        $this->form_validation->set_rules('txtCorreo','Correo','required|valid_email');
-        $this->form_validation->set_rules('txtUsuario','Usuario','required|max_length[250]');
-        $this->form_validation->set_rules('txtPassword','Password','required');
+ 
+        $this->form_validation->set_rules('txtCodigo','C&oacute;digo','required');
+        $this->form_validation->set_rules('txtCodigoCatalogo','C&oacute;digo Catalogo','required');
+        $this->form_validation->set_rules('txtDescripcion','Descripci&oacute;n','required');
+        $this->form_validation->set_rules('txtCosto','Costo','required');
+        $this->form_validation->set_rules('txtPrecioCatalogo','Precio Catalogo','required');
+        $detalle='';
         
         //$this->form_validation->set_rules('cboTipoEmpresa','Tipo Empresa','required');
         if($this->form_validation->run()===FALSE){
@@ -54,14 +56,73 @@ class sec_productos extends My_Controller{
                 $this->load->view("mantenedores/productos/agregar",$detalle);
                 $this->load->view("template/footer",$this->data);
         }else{
-                $this->usuarios_model->add_usuario();
+            $this->load->model("productos_model");
+            $campos=array("CodigoProducto"=>$this->input->post("txtCodigo"),
+                "CodigocatalogoProducto"=> $this->input->post("txtCodigoCatalogo"),
+                "DescripcionProducto"=>$this->input->post("txtDescripcion"),
+                "PreciocompraProducto"=>$this->input->post("txtCosto"),
+                "PrecioventaProducto"=>$this->input->post("txtPrecioCatalogo"));
+            
+          
+            if($this->productos_model->crear($campos)){
+                
                 redirect('listado_productos');
+            }else{
+                $this->data['titulo']="Usuario - Agregar";
+                //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
+                
+                $this->load->view("template/header",$this->data);
+                $this->load->view("mantenedores/productos/agregar",$detalle);
+                $this->load->view("template/footer",$this->data);
+            }
+          
         }
     }
-    public function modificar(){
+    public function modificar($id_producto){
         
+        $this->load->library('form_validation');
+        $this->load->model("productos_model");
+        $detalle['id_producto']=$id_producto;
+        $this->form_validation->set_rules('txtCodigo','C&oacute;digo','required');
+        $this->form_validation->set_rules('txtCodigoCatalogo','C&oacute;digo Catalogo','required');
+        $this->form_validation->set_rules('txtDescripcion','Descripci&oacute;n','required');
+        $this->form_validation->set_rules('txtCosto','Costo','required');
+        $this->form_validation->set_rules('txtPrecioCatalogo','Precio Catalogo','required');
+         if($this->form_validation->run()===FALSE){
+            $this->load->model("productos_model");
+            $detalle['producto']=$this->productos_model->get_listado_productos("*",$id_producto);
+            $this->data['titulo']="Usuario - Modificar";
+            //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
+
+            $this->load->view("template/header",$this->data);
+            $this->load->view("mantenedores/productos/modificar",$detalle);
+            $this->load->view("template/footer",$this->data);
+        }else{
+           
+            $campos=array("CodigoProducto"=>$this->input->post("txtCodigo"),
+                "CodigocatalogoProducto"=> $this->input->post("txtCodigoCatalogo"),
+                "DescripcionProducto"=>$this->input->post("txtDescripcion"),
+                "PreciocompraProducto"=>$this->input->post("txtCosto"),
+                "PrecioventaProducto"=>$this->input->post("txtPrecioCatalogo"));
+            
+          
+            if($this->productos_model->modificar($id_producto,$campos)){
+                redirect('listado_productos');
+            }else{
+                $this->load->model("productos_model");
+                $detalle['producto']=$this->productos_model->get_listado_productos("*",$id_producto);
+                $this->data['titulo']="Usuario - Modificar";
+                //$detalle['tipo_empresa']=$this->empresas_model->get_tipo_empresa();
+            
+                $this->load->view("template/header",$this->data);
+                $this->load->view("mantenedores/productos/modificar",$detalle);
+                $this->load->view("template/footer",$this->data);
+            }
+        }
     }
-    public function eliminar(){
-        
+    public function eliminar($id_producto){
+        $this->load->model("productos_model");
+        $this->productos_model->eliminar($id_producto);
+        redirect('listado_productos');
     }
 }

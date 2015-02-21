@@ -13,13 +13,10 @@
     <input type="submit" value="Nuevo Usuario" class="btn btn-primary">
     </form>
     <p></p>
-    
-    
     <div class="table-responsive">
-         
-            <table class="table table-striped  table-bordered table-hover" id="dataTables-example">
+            <table class="table table-striped  table-bordered table-hover" id="dataTables-usuario">
                 <thead>
-                    <tr >
+                    <tr>
                             <th>Rut</th>
                             <th>Nombre</th>
                             <th>Correo</th>
@@ -39,7 +36,7 @@
 
                         ?>
 
-                    <tr class="gradeA">
+                    <tr>
                             <td><?=$value['RutUsuario']?></td>
                             <td><?=$value['NombreUsuario']." ".$value['ApellidoUsuario']?></td>
                             <td><?=$value['CorreoUsuario']?></td>
@@ -47,16 +44,27 @@
                             <td><?=$value['FecharegistroUsuario']?></td>
                             <td><?=$value['FechaultimoingresoUsuario']?></td>
                             <td><a href="<?=base_url()?>permiso_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-filter" ></span></button></a></td>
-
                            <td><a href="<?=base_url()?>modificar_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" ></span></button></a></td>
                             <td><a href="<?=base_url()?>eliminar_usuario/<?=$value['RutUsuario']?>" ><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-remove"></span></button></a></td>
-                            </td>
+                
                     </tr>
                     <?php endforeach; 
                         }else{
                             ?>
                     
-                    <tr><td colspan="9">Sin Datos</td></tr>
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                           <td></td>
+                            <td></td>
+                            
+                    </tr>
                     <?php
                         }
 ?>

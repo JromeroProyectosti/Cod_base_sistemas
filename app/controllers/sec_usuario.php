@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,9 +19,10 @@ class sec_usuario extends My_Controller{
     }
     public function listar($filtro=""){
         $this->data['titulo']="Usuarios - Listado";
+        //$this->data['scripts']="";
         $this->data['scripts']="<script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+        $('#dataTables-usuario').DataTable({
                 responsive: true
         });
     });

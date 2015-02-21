@@ -50,4 +50,9 @@ class Comun extends CI_Controller{
 
         echo $option;
     }
+    public function generajsonproductos($codigo){
+        $this->load->model("productos_model");
+        $resultado=$this->productos_model->get_listado_productos("*",null,array("CodigoProducto"=>$codigo,"EstadoProducto"=>1));
+        echo json_encode($resultado);
+    }
 }

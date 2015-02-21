@@ -49,7 +49,7 @@ $route['addempresa']="sec_empresa/addempresa";
 $route['modificar_empresa/(:any)']="sec_empresa/modificar_empresa/$1";
 $route['detalle_empresa/(:any)']="sec_empresa/detalle_empresa/$1";
 $route['eliminsr_empresa/(:any)']="sec_empresa/eliminar_empresa/$1";
-$route['sucursal/listado_sucursal']="sucursal/listado_sucursal";
+
 $route['crear_usuario']="sec_usuario/crear";
 $route['modificar_usuario/(:any)']="sec_usuario/modificar/$1";
 $route['listado_usuarios']="sec_usuario/listar";
@@ -57,11 +57,22 @@ $route['permiso_usuario/(:any)']="sec_usuario/permiso/$1";
 $route['listado_sucursal']="listado_sucursal";
 $route['listado_productos']="sec_productos/listar";
 $route['crear_producto']="sec_productos/crear";
-$route['modificar_producto/(:any)']="sec_productos/modificar/$1";
-$route['eliminar_producto/(:any)']="sec_productos/eliminar/$1";
+$route['modificar_producto/(:num)']="sec_productos/modificar/$1";
+$route['eliminar_producto/(:num)']="sec_productos/eliminar/$1";
+$route['listado_compras']="sec_ingreso/listar";
+$route['ingresar_factura']="sec_ingreso/factura";
+
+$route['ingresar_factura/(:any)']="sec_ingreso/factura/$1";
+$route['ingresar_producto/(:num)']="sec_ingreso/producto/$1";
+$route['ingresar_producto/(:num)']="sec_ingreso/producto/$1";
+$route['finalizar_compra']="sec_ingreso/finaliza";
+
+
+
 
 $route['comun/generaoptionciudad']="comun/generaoptionciudad";
 $route['comun/generaoptioncomuna']="comun/generaoptioncomuna";
+$route['comun/generajsonproductos/(:any)']="comun/generajsonproductos/$1";
 //$route['404_override'] = '';
 
 
